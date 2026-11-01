@@ -4,7 +4,9 @@ export type Theme = 'light' | 'dark';
 export type Os = 'mac' | 'win' | null;
 
 export const REPO = 'https://github.com/Intra-Sepriansa/devunra';
-export const RELEASES = `${REPO}/releases/latest`;
+export const VERSION = '1.0.0';
+/** Direct link to a file of the latest release (asset names carry the version). */
+export const download = (file: string): string => `${REPO}/releases/latest/download/${file}`;
 
 /** Files in public/ resolve against the relative base so the site works under /devunra/. */
 export const asset = (file: string): string => `${import.meta.env.BASE_URL}${file}`;

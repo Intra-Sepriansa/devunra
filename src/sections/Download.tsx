@@ -2,17 +2,22 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Reveal, SectionHead } from '../components/Reveal';
 import { Tarsier } from '../components/Tarsier';
-import { RELEASES, REPO, type Os } from '../lib/env';
+import { REPO, VERSION, download, type Os } from '../lib/env';
 
 const ROWS = [
-  { os: 'mac' as const, name: 'macOS', meta: 'Apple Silicon · .dmg · 105 MB', actions: [{ label: 'Unduh .dmg', primary: true }] },
+  {
+    os: 'mac' as const,
+    name: 'macOS',
+    meta: 'Apple Silicon · .dmg · 105 MB',
+    actions: [{ label: 'Unduh .dmg', primary: true, file: `DEVUNRA-${VERSION}-arm64.dmg` }],
+  },
   {
     os: 'win' as const,
     name: 'Windows',
     meta: 'x64 · installer .exe · 83 MB',
     actions: [
-      { label: 'Unduh .exe', primary: true },
-      { label: 'Portable .zip', primary: false },
+      { label: 'Unduh .exe', primary: true, file: `DEVUNRA-Setup-${VERSION}.exe` },
+      { label: 'Portable .zip', primary: false, file: `DEVUNRA-${VERSION}-win-x64.zip` },
     ],
   },
 ];
@@ -42,9 +47,8 @@ export function Download({ os }: { os: Os }): React.ReactElement {
                   <motion.a
                     key={a.label}
                     className={a.primary ? 'btn btn-primary' : 'btn btn-ghost'}
-                    href={RELEASES}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={download(a.file)}
+                    rel="noopener"
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                   >
