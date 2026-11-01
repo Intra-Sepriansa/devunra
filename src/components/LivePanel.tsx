@@ -11,8 +11,8 @@ import type { Mood } from './Tarsier';
 type Status = 'stopped' | 'starting' | 'running' | 'stopping';
 
 const SERVICES = [
-  { id: 'apache', name: 'Apache', sub: 'web', ver: '2.4.62', port: 18080, log: 'listening on 127.0.0.1:18080' },
-  { id: 'php', name: 'PHP', sub: 'herd binary', ver: '8.5.8', port: 19001, log: 'PHP 8.5.8 Development Server started' },
+  { id: 'apache', name: 'Apache', sub: 'system binary', ver: '2.4.67', port: 18080, log: 'AH00489: resuming normal operations' },
+  { id: 'php', name: 'PHP', sub: 'herd binary', ver: '8.5.8', port: 19001, log: 'fpm is running, pid 4120' },
   { id: 'mysql', name: 'MySQL', sub: 'homebrew binary', ver: '9.6.0', port: 13306, log: 'ready for connections. port: 13306' },
   { id: 'postgresql', name: 'PostgreSQL', sub: 'homebrew binary', ver: '16.15', port: 15432, log: 'database system is ready to accept connections' },
   { id: 'redis', name: 'Redis', sub: 'homebrew binary', ver: '8.4.0', port: 16379, log: 'Ready to accept connections tcp' },

@@ -13,6 +13,7 @@ import { Hero } from './sections/Hero';
 import { Installer } from './sections/Installer';
 import { PhpScene } from './sections/PhpScene';
 import { PortMove } from './sections/PortMove';
+import { RequestTrace } from './sections/RequestTrace';
 
 export function App(): React.ReactElement {
   const [theme, toggleTheme] = useTheme();
@@ -35,6 +36,7 @@ export function App(): React.ReactElement {
         <EngineScene />
         <PortMove />
         <PhpScene />
+        <RequestTrace />
         <Installer />
         <Gallery theme={theme} />
         <Download os={os} />

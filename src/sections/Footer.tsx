@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Tarsier } from '../components/Tarsier';
-import { REPO } from '../lib/env';
+import { REPO, VERSION } from '../lib/env';
 
 /** A giant wordmark that rises in as the page ends, with the tarsier asleep on top. */
 export function Footer(): React.ReactElement {
@@ -44,7 +44,7 @@ export function Footer(): React.ReactElement {
       </div>
       <div className="wrap foot-bottom mono dim">
         <span>© {new Date().getFullYear()} DEVUNRA</span>
-        <span>v1.0.0</span>
+        <span>v{VERSION}</span>
       </div>
     </footer>
   );

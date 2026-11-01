@@ -28,7 +28,7 @@ export function Gallery({ theme }: { theme: Theme }): React.ReactElement {
   return (
     <section className="sect" id="app">
       <div className="wrap">
-        <SectionHead index="05" label="Aplikasi" title="Lihat aplikasinya.">
+        <SectionHead index="06" label="Aplikasi" title="Lihat aplikasinya.">
           <Reveal className="tabs-wrap" delay={0.3}>
             <div className="tabs" role="tablist" aria-label="Tampilan">
             {SHOTS.map((s) => (

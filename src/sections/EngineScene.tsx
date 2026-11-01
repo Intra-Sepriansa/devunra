@@ -16,7 +16,7 @@ const ENGINES = [
   { name: 'PostgreSQL', silk: 'pgsql', ver: '16 · 17', at: [-170, 290], m: [-95, 410] },
   { name: 'Redis', silk: 'redis', ver: '8.4', at: [480, 60], m: [300, 120] },
   { name: 'Composer', silk: 'composer', ver: '2.x', at: [420, 200], m: [250, 290] },
-  { name: 'phpMyAdmin', silk: 'pma', ver: '5.2', at: [190, 290], m: [95, 410] },
+  { name: 'Apache', silk: 'httpd', ver: '2.4', at: [190, 290], m: [95, 410] },
 ] as const;
 
 const NODE = 34;

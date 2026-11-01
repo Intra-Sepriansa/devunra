@@ -7,6 +7,7 @@ const LINKS = [
   ['engine', 'Engine'],
   ['port', 'Port'],
   ['php', 'PHP'],
+  ['jalur', 'Apache'],
   ['app', 'Aplikasi'],
   ['unduh', 'Unduh'],
 ] as const;

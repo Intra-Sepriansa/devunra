@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring, type Variants } from 'motion/react';
 import { LedField, type LedFieldHandle } from '../components/LedField';
 import { LivePanel } from '../components/LivePanel';
 import { Tarsier, type Mood } from '../components/Tarsier';
-import type { Os } from '../lib/env';
+import { VERSION, type Os } from '../lib/env';
 
 const ease = [0.2, 0.7, 0.1, 1] as const;
 
@@ -67,7 +67,7 @@ export function Hero({ mood, onMood, os }: { mood: Mood; onMood: (m: Mood) => vo
         <div className="hero-copy">
           <motion.p className="kicker" variants={fade} initial="hidden" animate="show" custom={0}>
             <span className="led led-on pulse" />
-            Local dev supervisor · v1.0
+            Local dev supervisor · v{VERSION}
           </motion.p>
           <h1 className="hero-h" aria-label="Satu panel. Semua server lokal.">
             {['Satu panel.', 'Semua server', 'lokal'].map((text, i) => (
@@ -80,7 +80,7 @@ export function Hero({ mood, onMood, os }: { mood: Mood; onMood: (m: Mood) => vo
             ))}
           </h1>
           <motion.p className="hero-sub" variants={fade} initial="hidden" animate="show" custom={1}>
-            PHP, MySQL, PostgreSQL dan Redis asli. Port bentrok beres sendiri. macOS dan Windows.
+            Apache, PHP, MySQL, PostgreSQL dan Redis asli. HTTPS dan domain .test lokal. macOS dan Windows.
           </motion.p>
           <motion.div className="cta" variants={fade} initial="hidden" animate="show" custom={2}>
             <MagnetLink href="#unduh" className="btn btn-primary">
@@ -96,11 +96,11 @@ export function Hero({ mood, onMood, os }: { mood: Mood; onMood: (m: Mood) => vo
           <motion.dl className="hero-specs" variants={fade} initial="hidden" animate="show" custom={3}>
             <div>
               <dt>Engine</dt>
-              <dd>5 asli</dd>
+              <dd>6 asli</dd>
             </div>
             <div>
               <dt>PHP</dt>
-              <dd>8.4 · 8.5 · 8.6</dd>
+              <dd>8.4–8.6</dd>
             </div>
             <div>
               <dt>OS</dt>
