@@ -419,19 +419,9 @@ main, .foot, .nav { position: relative; z-index: 1; }
 .st-line { display: block; }
 .st-word { display: inline-block; margin-right: 0.24em; }
 .st-line .st-word:last-child { margin-right: 0; }
-.sect-idx {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.sect-idx::before { content: ''; width: 8px; height: 8px; background: var(--accent); }
 .sect h2,
 .port h2 {
-  margin-top: 22px;
+  margin-top: 0;
   font-size: clamp(42px, 6vw, 92px);
   font-weight: 600;
   line-height: 0.98;

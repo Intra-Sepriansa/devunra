@@ -91,7 +91,7 @@ export function Installer(): React.ReactElement {
   return (
     <section className="sect" id="install">
       <div className="wrap install">
-        <SectionHead index="05" label="Proyek" title={'Laravel. WordPress.\nLangsung jalan.'}>
+        <SectionHead title={'Laravel. WordPress.\nLangsung jalan.'}>
           <Reveal className="seg" delay={0.3}>
             <div role="tablist" aria-label="Template" className="seg-in">
             {(Object.keys(RECIPES) as Array<keyof typeof RECIPES>).map((key) => (

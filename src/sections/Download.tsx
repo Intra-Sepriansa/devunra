@@ -156,7 +156,7 @@ export function Download({ os }: { os: Os }): React.ReactElement {
   return (
     <section className="sect" id="unduh">
       <div className="wrap">
-        <SectionHead index="07" label="Unduh" title="Unduh DEVUNRA." />
+        <SectionHead title="Unduh DEVUNRA." />
         <Reveal className="dlx" delay={0.08}>
           <div className="dlx-switch" role="tablist" aria-label="Sistem operasi">
             {(Object.keys(PLATFORMS) as Platform[]).map((id) => (

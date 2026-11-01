@@ -81,8 +81,6 @@ export function PhpScene(): React.ReactElement {
     <section className="sect" id="php">
       <div className="wrap">
         <SectionHead
-          index="03"
-          label="PHP"
           title={'Tiap situs,\nversi PHP-nya sendiri.'}
           sub="Klik situsnya untuk ganti versi."
         />

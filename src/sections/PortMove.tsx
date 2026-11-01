@@ -48,7 +48,6 @@ export function PortMove(): React.ReactElement {
       <div className="port-sticky">
         <div className="wrap port-in">
           <header className="sect-head">
-            <span className="sect-idx mono">02 / Port</span>
             <SplitTitle text={'Port bentrok?\nPindah sendiri.'} />
           </header>
           <div className="port-stage">

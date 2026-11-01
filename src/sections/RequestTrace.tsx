@@ -159,7 +159,7 @@ export function RequestTrace(): React.ReactElement {
   return (
     <section className="sect" id="jalur">
       <div className="wrap">
-        <SectionHead index="04" label="Apache" title={'Dari URL\nsampai PHP.'} sub="Apache asli, .htaccess, HTTPS lokal. Pilih URL, lihat jalannya." />
+        <SectionHead title={'Dari URL\nsampai PHP.'} sub="Apache asli, .htaccess, HTTPS lokal. Pilih URL, lihat jalannya." />
 
         <Reveal className="trace" delay={0.1}>
           <div ref={box}>

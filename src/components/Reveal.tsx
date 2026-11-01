@@ -56,14 +56,9 @@ export function SplitTitle({ text, as = 'h2', className }: { text: string; as?: 
   );
 }
 
-export function SectionHead({ index, label, title, sub, children }: { index: string; label: string; title: string; sub?: string; children?: React.ReactNode }) {
+export function SectionHead({ title, sub, children }: { title: string; sub?: string; children?: React.ReactNode }) {
   return (
     <header className="sect-head">
-      <Reveal as="div" className="sect-idx-wrap">
-        <span className="sect-idx mono">
-          {index} / {label}
-        </span>
-      </Reveal>
       <SplitTitle text={title} />
       {sub && (
         <Reveal as="p" className="sect-sub" delay={0.25}>

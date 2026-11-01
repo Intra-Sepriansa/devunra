@@ -62,8 +62,6 @@ export function EngineScene(): React.ReactElement {
     <section className="sect" id="engine">
       <div className="wrap">
         <SectionHead
-          index="01"
-          label="Engine"
           title={'Engine asli,\nbukan simulasi.'}
           sub="Pakai yang sudah terpasang di komputermu."
         />
