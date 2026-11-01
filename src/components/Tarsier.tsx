@@ -28,9 +28,13 @@ interface TarsierProps {
   reach?: number;
   className?: string;
   onBoop?: () => void;
+  /** Draw inside another SVG at a fixed size instead of filling its HTML box. */
+  nested?: boolean;
+  width?: number;
+  height?: number;
 }
 
-export function Tarsier({ mood = 'awake', reach = 2.8, className, onBoop }: TarsierProps): React.ReactElement {
+export function Tarsier({ mood = 'awake', reach = 2.8, className, onBoop, nested, width, height }: TarsierProps): React.ReactElement {
   const id = useId().replace(/:/g, '');
   const svgRef = useRef<SVGSVGElement>(null);
   const boops = useRef<number[]>([]);
@@ -113,13 +117,23 @@ export function Tarsier({ mood = 'awake', reach = 2.8, className, onBoop }: Tars
     look && 'tz-follow',
     gesture === 'blink' && 'tz-blinking',
     gesture && gesture !== 'blink' && `tz-${gesture}`,
+    nested && 'tz-nested',
     className,
   ]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <svg ref={svgRef} className={classes} viewBox="8 10 48 43" role="img" aria-label={`Tarsius DEVUNRA, ${mood}`} onClick={onBodyClick}>
+    <svg
+      ref={svgRef}
+      className={classes}
+      viewBox="8 10 48 43"
+      width={nested ? width : undefined}
+      height={nested ? height : undefined}
+      role="img"
+      aria-label={`Tarsius DEVUNRA, ${mood}`}
+      onClick={onBodyClick}
+    >
       <defs>
         {EYES.map((eye, i) => (
           <clipPath key={i} id={`${id}-eye${i}`}>

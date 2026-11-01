@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView } from 'motion/react';
-import { Reveal } from '../components/Reveal';
+import { Reveal, SectionHead } from '../components/Reveal';
 import { playSound } from '../lib/sound';
 
 /** The new-project installers, replayed as a terminal log. */
@@ -91,14 +91,9 @@ export function Installer(): React.ReactElement {
   return (
     <section className="sect" id="install">
       <div className="wrap install">
-        <Reveal as="header" className="sect-head">
-          <span className="sect-idx mono">04 / Proyek</span>
-          <h2>
-            Laravel. WordPress.
-            <br />
-            Langsung jalan.
-          </h2>
-          <div className="seg" role="tablist" aria-label="Template">
+        <SectionHead index="04" label="Proyek" title={'Laravel. WordPress.\nLangsung jalan.'}>
+          <Reveal className="seg" delay={0.3}>
+            <div role="tablist" aria-label="Template" className="seg-in">
             {(Object.keys(RECIPES) as Array<keyof typeof RECIPES>).map((key) => (
               <button
                 key={key}
@@ -114,9 +109,10 @@ export function Installer(): React.ReactElement {
                 <span className="seg-label">{key === 'laravel' ? 'Laravel' : 'WordPress'}</span>
               </button>
             ))}
-          </div>
-        </Reveal>
-        <Reveal delay={0.1}>
+            </div>
+          </Reveal>
+        </SectionHead>
+        <Reveal delay={0.1} className="term-wrap">
           <div ref={termRef} className={done ? 'term is-done' : 'term'}>
             <div className="term-bar mono">
               <span className="win-dots">

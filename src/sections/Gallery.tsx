@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useMotionValue, useSpring } from 'motion/react';
-import { Reveal } from '../components/Reveal';
+import { Reveal, SectionHead } from '../components/Reveal';
 import { asset, type Theme } from '../lib/env';
 
 /** Real screenshots of the app, in the page's theme, with a slight tilt toward the pointer. */
@@ -28,20 +28,18 @@ export function Gallery({ theme }: { theme: Theme }): React.ReactElement {
   return (
     <section className="sect" id="app">
       <div className="wrap">
-        <Reveal as="header" className="sect-head sect-head-row">
-          <div>
-            <span className="sect-idx mono">05 / Aplikasi</span>
-            <h2>Lihat aplikasinya.</h2>
-          </div>
-          <div className="tabs" role="tablist" aria-label="Tampilan">
+        <SectionHead index="05" label="Aplikasi" title="Lihat aplikasinya.">
+          <Reveal className="tabs-wrap" delay={0.3}>
+            <div className="tabs" role="tablist" aria-label="Tampilan">
             {SHOTS.map((s) => (
               <button key={s.id} type="button" role="tab" aria-selected={shot === s.id} onClick={() => setShot(s.id)}>
                 {s.label}
                 {shot === s.id && <motion.span layoutId="tab-line" className="tab-line" transition={{ type: 'spring', stiffness: 420, damping: 34 }} />}
               </button>
             ))}
-          </div>
-        </Reveal>
+            </div>
+          </Reveal>
+        </SectionHead>
         <Reveal as="figure" className="shot" delay={0.1}>
           <motion.div
             className="shot-tilt"

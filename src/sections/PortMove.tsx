@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from 'motion/react';
+import { SplitTitle } from '../components/Reveal';
 import { Tarsier, type Mood } from '../components/Tarsier';
 import { playSound } from '../lib/sound';
 
@@ -48,11 +49,7 @@ export function PortMove(): React.ReactElement {
         <div className="wrap port-in">
           <header className="sect-head">
             <span className="sect-idx mono">02 / Port</span>
-            <h2>
-              Port bentrok?
-              <br />
-              Pindah sendiri.
-            </h2>
+            <SplitTitle text={'Port bentrok?\nPindah sendiri.'} />
           </header>
           <div className="port-stage">
             <div className="port-svc mono">
