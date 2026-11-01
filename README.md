@@ -17,18 +17,17 @@ npm run dev
 
 ## Deploy
 
-Alamat produksi: **https://devunra.arsinode.site/**, dihosting di **AWS Amplify Hosting**. App ID `d3m7ie18mkkxa7`, region `us-east-1`, branch `main`. Alamat AWS langsung: https://main.d3m7ie18mkkxa7.amplifyapp.com/.
+Alamat produksi: **https://devunra.arsinode.site/**, dihosting di **server yang sama dengan Arsinode** menggunakan Nginx. Situs ditempatkan terpisah di `/var/www/devunra.arsinode.site`, sehingga rilis DEVUNRA tidak mengubah file situs Arsinode.
 
-Untuk memperbarui situs, gunakan Node.js 22+, AWS CLI v2, dan `zip`. Login dengan akun AWS yang memiliki akses ke aplikasi ini, lalu jalankan:
+Untuk memperbarui situs, gunakan Node.js 22+, SSH, dan `rsync`. Pastikan alias SSH `intra` mengarah ke server Arsinode dengan akun yang memiliki akses ke folder DEVUNRA, lalu jalankan:
 
 ```bash
-aws login --region us-east-1
 npm ci
-npm run deploy:aws
+npm run deploy
 ```
 
-Perintah deploy membangun situs, mengunggah isi `dist/`, dan menunggu hasil deployment AWS. Konfigurasi publik disimpan di `aws-hosting.json`; kredensial AWS tidak disimpan dalam repo. GitHub Actions di `.github/workflows/build.yml` memeriksa build dan menyimpan hasilnya; publikasi ke AWS dilakukan lewat perintah deploy di atas.
+Perintah deploy membangun situs, mengunggah isi `dist/` ke folder rilis baru, lalu mengganti symlink `current` secara atomik. Pemeriksaan HTTPS langsung ke Nginx dijalankan setelah aktivasi; jika gagal, rilis sebelumnya dipulihkan. Konfigurasi ada di `hosting.json`; kunci SSH tidak disimpan dalam repo. Alias koneksi dapat diganti melalui `DEVUNRA_SSH_HOST`. GitHub Actions di `.github/workflows/build.yml` memeriksa build dan menyimpan hasilnya; publikasi ke server dilakukan lewat perintah deploy di atas.
 
-Domain `arsinode.site` terdaftar di Spaceship, tetapi DNS aktif dikelola Cloudflare (`ganz.ns.cloudflare.com` dan `jen.ns.cloudflare.com`). Record produksi: `CNAME devunra → d1kh21krvwge9j.cloudfront.net`, DNS only, TTL 300 detik. Sertifikat HTTPS dikelola dan diperpanjang AWS Amplify. Pertahankan CNAME validasi ACM `_fa1cec517a9a44ead8958bd16314448d.arsinode.site` dalam mode DNS only agar perpanjangan sertifikat tetap berjalan.
+Domain `arsinode.site` terdaftar di Spaceship, tetapi DNS aktif dikelola Cloudflare (`ganz.ns.cloudflare.com` dan `jen.ns.cloudflare.com`). Record `A` untuk `devunra` memakai alamat server yang sama dengan `arsinode.site` dan mode Proxied. Konfigurasi Nginx tersimpan di `deploy/nginx/devunra.arsinode.site.conf`; berkas tersebut dipasang sebagai virtual host DEVUNRA terpisah di server.
 
-Hosting ditagih sesuai pemakaian; lihat [harga AWS Amplify](https://aws.amazon.com/amplify/pricing/).
+HTTPS origin memakai sertifikat Let's Encrypt untuk `devunra.arsinode.site`. Certbot memperpanjangnya melalui webroot `/var/www/devunra.arsinode.site/acme` dan memuat ulang Nginx setelah perpanjangan. Pertahankan lokasi `/.well-known/acme-challenge/` di konfigurasi HTTP dan HTTPS agar perpanjangan otomatis dapat berjalan.
