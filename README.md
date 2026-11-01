@@ -17,8 +17,18 @@ npm run dev
 
 ## Deploy
 
-Setiap push ke `main` di-build dan dipasang ke GitHub Pages oleh `.github/workflows/deploy.yml`. Sekali saja: Settings › Pages › Source pilih **GitHub Actions**.
+Alamat produksi: **https://devunra.arsinode.site/**, dihosting di **AWS Amplify Hosting**. App ID `d3m7ie18mkkxa7`, region `us-east-1`, branch `main`. Alamat AWS langsung: https://main.d3m7ie18mkkxa7.amplifyapp.com/.
 
-Alamat produksi: **https://devunra.arsinode.site/**. Custom domain di Settings › Pages adalah `devunra.arsinode.site`, dengan HTTPS diaktifkan setelah sertifikat terbit.
+Untuk memperbarui situs, gunakan Node.js 22+, AWS CLI v2, dan `zip`. Login dengan akun AWS yang memiliki akses ke aplikasi ini, lalu jalankan:
 
-Domain `arsinode.site` terdaftar di Spaceship, tetapi DNS aktif dikelola Cloudflare (`ganz.ns.cloudflare.com` dan `jen.ns.cloudflare.com`). Record subdomain: `CNAME devunra → intra-sepriansa.github.io`, DNS only, TTL 300 detik. Custom domain diatur melalui Settings › Pages; alur GitHub Actions ini tidak memerlukan file `CNAME`.
+```bash
+aws login --region us-east-1
+npm ci
+npm run deploy:aws
+```
+
+Perintah deploy membangun situs, mengunggah isi `dist/`, dan menunggu hasil deployment AWS. Konfigurasi publik disimpan di `aws-hosting.json`; kredensial AWS tidak disimpan dalam repo. GitHub Actions di `.github/workflows/build.yml` memeriksa build dan menyimpan hasilnya; publikasi ke AWS dilakukan lewat perintah deploy di atas.
+
+Domain `arsinode.site` terdaftar di Spaceship, tetapi DNS aktif dikelola Cloudflare (`ganz.ns.cloudflare.com` dan `jen.ns.cloudflare.com`). Record produksi: `CNAME devunra → d1kh21krvwge9j.cloudfront.net`, DNS only, TTL 300 detik. Sertifikat HTTPS dikelola dan diperpanjang AWS Amplify. Pertahankan CNAME validasi ACM `_fa1cec517a9a44ead8958bd16314448d.arsinode.site` dalam mode DNS only agar perpanjangan sertifikat tetap berjalan.
+
+Hosting ditagih sesuai pemakaian; lihat [harga AWS Amplify](https://aws.amazon.com/amplify/pricing/).
