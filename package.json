@@ -1,0 +1,26 @@
+{
+  "name": "devunra-web",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Landing page for DEVUNRA, the local dev supervisor for macOS and Windows.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.1.1",
+    "@fontsource/ibm-plex-sans": "^5.1.1",
+    "motion": "12.43.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "4.7.0",
+    "typescript": "5.9.3",
+    "vite": "6.4.5"
+  }
+}

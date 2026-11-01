@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>DEVUNRA · Satu panel untuk semua server lokal</title>
+    <meta
+      name="description"
+      content="DEVUNRA menjalankan PHP, MySQL, PostgreSQL dan Redis asli di macOS dan Windows, membereskan port yang bentrok, dan memberi tiap situs versi PHP-nya sendiri."
+    />
+    <meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#151514" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="DEVUNRA" />
+    <meta property="og:description" content="Satu panel untuk semua server lokal. PHP, MySQL, PostgreSQL, Redis asli di macOS dan Windows." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://intra-sepriansa.github.io/devunra/img/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="./img/favicon.png" />
+    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png" />
+    <script>
+      // Pick the theme before first paint so the page never flashes the wrong one.
+      (function () {
+        var saved = null;
+        try { saved = localStorage.getItem('devunra-theme'); } catch (e) {}
+        var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>DEVUNRA butuh JavaScript untuk animasinya. Unduh di https://github.com/Intra-Sepriansa/devunra/releases</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
