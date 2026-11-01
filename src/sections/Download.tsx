@@ -10,15 +10,15 @@ type Pick = ReleaseFile & { label: string; kind: string; format: string; first: 
 const EASE = [0.2, 0.7, 0.1, 1] as const;
 
 /** Steps after the first one; the first depends on the picked file. */
-const PLATFORMS: Record<Platform, { name: string; chip: string; needs: string; files: Pick[]; steps: { text: string; cmd?: string }[] }> = {
+const PLATFORMS: Record<Platform, { name: string; chip: string; needs: string; files: Pick[]; steps: { text: string }[] }> = {
   mac: {
     name: 'macOS',
     chip: 'Apple Silicon',
     needs: 'macOS 12+',
     files: [{ ...RELEASE.mac, label: 'Unduh .dmg', kind: 'Disk image', format: '.dmg', first: 'Buka .dmg, seret DEVUNRA ke Applications.' }],
     steps: [
-      { text: 'Muncul “Tidak Dibuka”? Pilih Selesai, lalu System Settings › Privacy & Security › Buka Saja. Atau di Terminal:', cmd: 'xattr -dr com.apple.quarantine /Applications/DEVUNRA.app' },
-      { text: 'Settings › Engine › Pasang semua.' },
+      { text: 'Buka DEVUNRA dari Applications. Jika macOS tidak bisa memverifikasi app, pilih Selesai. Di System Settings › Privacy & Security, pilih Open Anyway untuk DEVUNRA, lalu konfirmasi Open / Buka.' },
+      { text: 'Di DEVUNRA, buka Settings › Engine › Pasang semua.' },
     ],
   },
   win: {
@@ -228,22 +228,34 @@ export function Download({ os }: { os: Os }): React.ReactElement {
                   <Checksum sha={file.sha256} />
                 </div>
 
-                <ol className="dlx-steps">
-                  {[{ text: file.first } as { text: string; cmd?: string }, ...platform.steps].map((s, i) => (
-                    <motion.li
-                      key={s.text}
-                      initial={{ opacity: 0, x: 14 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, ease: EASE, delay: 0.12 + i * 0.08 }}
-                    >
-                      <span className="dlx-n mono">{i + 1}</span>
-                      <span className="dlx-step">
-                        {s.text}
-                        {s.cmd && <CommandChip cmd={s.cmd} />}
-                      </span>
-                    </motion.li>
-                  ))}
-                </ol>
+                <div className="dlx-guide">
+                  <ol className="dlx-steps">
+                    {[{ text: file.first }, ...platform.steps].map((s, i) => (
+                      <motion.li
+                        key={s.text}
+                        initial={{ opacity: 0, x: 14 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, ease: EASE, delay: 0.12 + i * 0.08 }}
+                      >
+                        <span className="dlx-n mono">{i + 1}</span>
+                        <span className="dlx-step">{s.text}</span>
+                      </motion.li>
+                    ))}
+                  </ol>
+                  {pick === 'mac' && (
+                    <details className="dlx-help">
+                      <summary>Masih tidak bisa dibuka?</summary>
+                      <div className="dlx-help-body">
+                        <p>Versi macOS ini belum dinotarisasi Apple. Izinkan hanya salinan dari tautan unduhan resmi di halaman ini.</p>
+                        <p>Open Anyway belum muncul? Coba buka DEVUNRA dari Applications sekali lagi, lalu kembali ke Privacy &amp; Security. Di macOS Monterey, pengaturannya ada di System Preferences › Security &amp; Privacy › General.</p>
+                        <p>Alternatif lewat Terminal: perintah ini menghapus karantina hanya pada DEVUNRA.</p>
+                        <CommandChip cmd={'xattr -dr com.apple.quarantine "/Applications/DEVUNRA.app"'} />
+                        <p>Jika muncul “Operation not permitted”, periksa izin aplikasi terminal yang dipakai di System Settings › Privacy &amp; Security › App Management. Setelah mengubah izin, buka ulang terminal sebelum mencoba lagi.</p>
+                        <a href="https://support.apple.com/id-id/102445" target="_blank" rel="noopener noreferrer">Petunjuk resmi Apple ↗</a>
+                      </div>
+                    </details>
+                  )}
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>

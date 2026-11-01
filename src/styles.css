@@ -689,6 +689,12 @@ main, .foot, .nav { position: relative; z-index: 1; }
 .dlx-copy:hover, .dlx-cmd:hover { border-color: var(--line-strong); color: var(--ink); }
 .dlx-copy.is-done, .dlx-cmd.is-done { border-color: var(--ok); color: var(--ok); }
 .dlx-steps { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.dlx-guide { min-width: 0; }
+.dlx-help { margin-top: 18px; font-size: 13px; line-height: 1.55; color: var(--ink-2); }
+.dlx-help summary { cursor: pointer; color: var(--ink); text-decoration: underline dotted; text-underline-offset: 4px; }
+.dlx-help-body { display: grid; gap: 12px; padding-top: 14px; overflow-wrap: anywhere; }
+.dlx-help-body p { margin: 0; }
+.dlx-help-body a { color: var(--ink); text-underline-offset: 3px; }
 .dlx-steps li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .dlx-n { display: inline-grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--line-strong); border-radius: 50%; font-size: 11px; color: var(--ink-2); }
 .dlx-steps li:hover .dlx-n { border-color: var(--accent); color: var(--accent-ink); }
