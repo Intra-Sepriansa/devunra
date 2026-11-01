@@ -17,7 +17,7 @@ const PLATFORMS: Record<Platform, { name: string; chip: string; needs: string; f
     needs: 'macOS 12+',
     files: [{ ...RELEASE.mac, label: 'Unduh .dmg', kind: 'Disk image', format: '.dmg', first: 'Buka .dmg, seret DEVUNRA ke Applications.' }],
     steps: [
-      { text: 'Diblokir Gatekeeper? Izinkan sekali:', cmd: 'xattr -dr com.apple.quarantine /Applications/DEVUNRA.app' },
+      { text: 'Muncul “Tidak Dibuka”? Pilih Selesai, lalu System Settings › Privacy & Security › Buka Saja. Atau di Terminal:', cmd: 'xattr -dr com.apple.quarantine /Applications/DEVUNRA.app' },
       { text: 'Settings › Engine › Pasang semua.' },
     ],
   },
