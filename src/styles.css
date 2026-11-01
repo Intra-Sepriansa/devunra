@@ -585,8 +585,7 @@ main, .foot, .nav { position: relative; z-index: 1; }
 
 /* footer */
 .foot { border-top: 1px solid var(--line); padding-top: 40px; overflow: hidden; }
-.foot-top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-.foot-note { font-size: 13px; color: var(--ink-2); }
+.foot-top { display: flex; justify-content: flex-end; gap: 24px; flex-wrap: wrap; }
 .foot-links { display: flex; gap: 24px; font-size: 13px; }
 .foot-links a { color: var(--ink-2); text-decoration: none; transition: color 0.2s; }
 .foot-links a:hover { color: var(--accent-ink); }

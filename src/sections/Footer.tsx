@@ -15,7 +15,6 @@ export function Footer(): React.ReactElement {
   return (
     <footer ref={ref} className="foot">
       <div className="wrap foot-top">
-        <span className="foot-note mono">Dijaga tarsius dari Sulawesi.</span>
         <nav className="foot-links mono" aria-label="Tautan">
           <a href={REPO} target="_blank" rel="noopener noreferrer">
             GitHub
