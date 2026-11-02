@@ -13,6 +13,12 @@
       "sha256": "57711e96d6daaacf5148554d26ff1d4cab997d2b6a9a7cf8bcfac92c3c7b4f99",
       "size": 118317638,
       "minimumOS": "11.0"
+    },
+    "win32-x64": {
+      "url": "https://github.com/Intra-Sepriansa/devunra/releases/download/v1.2.0/DEVUNRA-Setup-1.2.0.exe",
+      "sha256": "e30fe25eae56b7e84bd478d1500586a60d2ec70f9194c18f4b6b7a2335c08ee6",
+      "size": 600627817,
+      "minimumOS": "10.0"
     }
   }
 }

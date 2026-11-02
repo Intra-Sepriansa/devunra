@@ -219,11 +219,9 @@ export function Download({ os }: { os: Os }): React.ReactElement {
                     ].map(([k, v]) => (
                       <div key={k}>
                         <dt>{k}</dt>
-                        <AnimatePresence mode="wait" initial={false}>
-                          <motion.dd key={v} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.2 }}>
-                            {v}
-                          </motion.dd>
-                        </AnimatePresence>
+                        <motion.dd key={v} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+                          {v}
+                        </motion.dd>
                       </div>
                     ))}
                   </dl>

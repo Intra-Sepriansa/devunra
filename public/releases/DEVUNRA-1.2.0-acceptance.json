@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "version": "1.2.0",
-  "verificationStatus": "mac_accepted_windows_pending",
-  "note": "Mac artifacts accepted and installed; Windows 1.2.0 diagnostic failures are being fixed. Test groups overlap and must not be added together.",
+  "verificationStatus": "complete",
+  "note": "Five final artifacts accepted. Mac and Windows use distinct recorded source identities. Test groups overlap and must not be added together; skipped checks are not passes.",
   "unchangedDefaultPorts": {
     "apache": {
       "http": 18080,
@@ -222,30 +222,30 @@
     "completedAt": "2026-11-01T15:25:18.789Z"
   },
   "windows": {
-    "status": "installed_bundled_startup_diagnostics_pending",
+    "status": "passed",
     "physicalDeviceTested": false,
     "environment": "Windows Server 2022 GitHub-hosted VM",
-    "diagnostic": {
-      "passed": 86,
-      "failed": 1,
-      "skipped": 8,
+    "releaseAccepted": true,
+    "visualCppRuntime": "VM has Microsoft Visual C++ x64 runtime preinstalled; clean OS without runtime has not been tested.",
+    "unitTests": {
+      "status": "passed",
+      "passed": 105,
+      "failed": 0,
+      "skipped": 1,
+      "total": 106,
+      "testFiles": 16,
+      "runId": 41467081622,
+      "note": "One test is specific to another operating system and skipped on Windows."
+    },
+    "sourceCommit": "e4bfab42cd26b3f87e0c7c5e90c855732406f6f7",
+    "installerReleaseAccepted": true,
+    "installerAcceptance": {
       "total": 95,
-      "completedAt": "2026-11-02T03:39:29.292Z",
-      "runId": 41382675272,
-      "mode": "packaged-app-with-installed-host-engines",
-      "requiredNativeServices": [
-        "apache",
-        "php",
-        "mysql",
-        "postgresql",
-        "redis"
-      ],
-      "failedChecks": [
-        {
-          "name": "Databases: phpMyAdmin installs, opens and logs in to DEVUNRA MySQL",
-          "error": "page.screenshot: Timeout 30000ms exceeded."
-        }
-      ],
+      "passed": 86,
+      "failed": 0,
+      "skipped": 9,
+      "artifactWarnings": [],
+      "completedAt": "2026-11-02T15:27:41.015Z",
       "skippedChecks": [
         {
           "name": "Services: version dropdown switches a portable service",
@@ -272,6 +272,10 @@
           "reason": "Native Nginx and PHP FastCGI are required."
         },
         {
+          "name": "Engines: MongoDB creates and drops a real database",
+          "reason": "mongod and mongosh are required."
+        },
+        {
           "name": "Engines: Memcached stores and retrieves through its real protocol",
           "reason": "Memcached is not installed."
         },
@@ -280,34 +284,457 @@
           "reason": "Set E2E_INSTALLERS=1 to download Laravel and WordPress."
         }
       ],
-      "note": "The only failed check timed out while capturing the auxiliary phpMyAdmin window after login and database-tree assertions. It remains a failed diagnostic run."
-    },
-    "releaseAccepted": false,
-    "visualCppRuntime": "VM has Microsoft Visual C++ x64 runtime preinstalled; clean OS without runtime has not been tested.",
-    "initialDiagnostic": {
-      "passed": 73,
-      "failed": 15,
-      "skipped": 7,
-      "total": 95,
-      "runId": 41333713605
-    },
-    "unitTests": {
       "status": "passed",
-      "passed": 95,
+      "runId": 41467081622,
+      "mode": "final-nsis-installed-bundled-only",
+      "requiredNativeServices": [
+        "apache",
+        "php",
+        "mysql",
+        "postgresql",
+        "redis"
+      ],
+      "requestedPathContainsSpaces": true,
+      "sourceCommit": "e4bfab42cd26b3f87e0c7c5e90c855732406f6f7"
+    },
+    "packagingFixtures": {
+      "passed": 4,
       "failed": 0,
-      "skipped": 1,
-      "total": 96,
-      "runId": 41384596865,
-      "note": "One terminal test is specific to the other operating system and is skipped on Windows."
+      "skipped": 0,
+      "note": "Separate producer-selection fixtures and real Windows file-sharing lock fixtures."
     },
-    "pendingAcceptance": {
-      "runId": 41403105086,
-      "sourceCommit": "90ba2b5c3b195da58b0a67403e3a12bd2bbe79ed",
-      "mode": "installed-payload-startup-diagnostics",
-      "releaseAccepted": false,
-      "note": "The new run changes diagnostics and test tooling only; runtime code is unchanged. It records installed-payload validation timing and early process errors before acceptance is retried."
+    "bundleValidation": {
+      "manifestSha256": "c64c6e930e0eb7350f3bbc7b2ea1c43974739533e579cab95626e9d7389a0bbd",
+      "filesVerified": 8381,
+      "electronPrecompression": {
+        "electron": "33.4.11",
+        "node": "20.18.3",
+        "platform": "win32",
+        "architecture": "x64",
+        "enginesExecuted": false,
+        "ok": true,
+        "filesVerified": 8381,
+        "engines": [
+          "httpd",
+          "apacheModulesDir",
+          "apacheMimeTypes",
+          "php",
+          "phpFastcgi",
+          "mysqld",
+          "mysql",
+          "mysqldump",
+          "mysqlAdmin",
+          "postgres",
+          "initdb",
+          "psql",
+          "pgDump",
+          "pgCtl",
+          "redisServer",
+          "redisCli",
+          "openssl",
+          "composer"
+        ],
+        "manifestSha256": "c64c6e930e0eb7350f3bbc7b2ea1c43974739533e579cab95626e9d7389a0bbd",
+        "durationMs": 13317
+      },
+      "installedPayload": {
+        "platform": "win32",
+        "architecture": "x64",
+        "startedAt": "2026-11-02T15:20:55.115Z",
+        "ok": true,
+        "filesVerified": 8381,
+        "engines": [
+          "httpd",
+          "apacheModulesDir",
+          "apacheMimeTypes",
+          "php",
+          "phpFastcgi",
+          "mysqld",
+          "mysql",
+          "mysqldump",
+          "mysqlAdmin",
+          "postgres",
+          "initdb",
+          "psql",
+          "pgDump",
+          "pgCtl",
+          "redisServer",
+          "redisCli",
+          "openssl",
+          "composer"
+        ],
+        "durationMs": 10229,
+        "completedAt": "2026-11-02T15:21:05.354Z"
+      },
+      "installedRuntimeModules": {
+        "modules": [
+          {
+            "unpackedSha256": "7cc54a2a4d300e4a20b0d80819f427f34255596698e8bbca5a573dc00a707107",
+            "installedSha256": "7cc54a2a4d300e4a20b0d80819f427f34255596698e8bbca5a573dc00a707107",
+            "compiledSha256": "7cc54a2a4d300e4a20b0d80819f427f34255596698e8bbca5a573dc00a707107",
+            "matches": true,
+            "filename": "WorkspaceBootstrap.js"
+          },
+          {
+            "unpackedSha256": "0b7f3a6880fd048865d2f8795b11c67de1de5f229c2d3b51668f64e2e29b3f03",
+            "installedSha256": "0b7f3a6880fd048865d2f8795b11c67de1de5f229c2d3b51668f64e2e29b3f03",
+            "compiledSha256": "0b7f3a6880fd048865d2f8795b11c67de1de5f229c2d3b51668f64e2e29b3f03",
+            "matches": true,
+            "filename": "ServiceSupervisor.js"
+          }
+        ],
+        "sourceCommit": "e4bfab42cd26b3f87e0c7c5e90c855732406f6f7"
+      },
+      "portablePayload": {
+        "platform": "win32",
+        "architecture": "x64",
+        "startedAt": "2026-11-02T15:31:50.813Z",
+        "ok": true,
+        "filesVerified": 8381,
+        "engines": [
+          "httpd",
+          "apacheModulesDir",
+          "apacheMimeTypes",
+          "php",
+          "phpFastcgi",
+          "mysqld",
+          "mysql",
+          "mysqldump",
+          "mysqlAdmin",
+          "postgres",
+          "initdb",
+          "psql",
+          "pgDump",
+          "pgCtl",
+          "redisServer",
+          "redisCli",
+          "openssl",
+          "composer"
+        ],
+        "durationMs": 10315,
+        "completedAt": "2026-11-02T15:32:01.129Z"
+      }
     },
-    "bundledAttempts": [
+    "engineCoverage": {
+      "schemaVersion": 1,
+      "platform": "win32",
+      "arch": "x64",
+      "bundled": true,
+      "engines": [
+        {
+          "key": "httpd",
+          "version": "2.4.69"
+        },
+        {
+          "key": "apacheModulesDir",
+          "version": "2.4.69"
+        },
+        {
+          "key": "apacheMimeTypes",
+          "version": "2.4.69"
+        },
+        {
+          "key": "php",
+          "version": "8.5.12-1"
+        },
+        {
+          "key": "phpFastcgi",
+          "version": "8.5.12-1"
+        },
+        {
+          "key": "mysqld",
+          "version": "26.10.0"
+        },
+        {
+          "key": "mysql",
+          "version": "26.10.0"
+        },
+        {
+          "key": "mysqldump",
+          "version": "26.10.0"
+        },
+        {
+          "key": "mysqlAdmin",
+          "version": "26.10.0"
+        },
+        {
+          "key": "postgres",
+          "version": "18.6-5"
+        },
+        {
+          "key": "initdb",
+          "version": "18.6-5"
+        },
+        {
+          "key": "psql",
+          "version": "18.6-5"
+        },
+        {
+          "key": "pgDump",
+          "version": "18.6-5"
+        },
+        {
+          "key": "pgCtl",
+          "version": "18.6-5"
+        },
+        {
+          "key": "redisServer",
+          "version": "8.10.3"
+        },
+        {
+          "key": "redisCli",
+          "version": "8.10.3"
+        },
+        {
+          "key": "openssl",
+          "version": "4.1.0"
+        },
+        {
+          "key": "composer",
+          "version": "2.11.1"
+        }
+      ],
+      "provenance": [
+        {
+          "name": "apache",
+          "version": "2.4.69",
+          "sourceUrl": "https://www.apachelounge.com/download/VS18/binaries/httpd-2.4.69-261002-Win64-VS18.zip",
+          "license": "Apache-2.0",
+          "distributionUrls": [
+            "https://www.apachelounge.com/download/VS18/binaries/httpd-2.4.69-261002-Win64-VS18.zip"
+          ],
+          "distributionSha256": [
+            "77d715d0d9cee731e2251e7ddc2090a7a8e6d41fedef2e9827cd918593c5a652"
+          ],
+          "installedManifest": "components/apache/scoop-manifest.json"
+        },
+        {
+          "name": "php",
+          "version": "8.5.12-1",
+          "sourceUrl": "https://downloads.php.net/~windows/releases/archives/php-8.5.12-1-Win32-vs17-x64.zip",
+          "license": "PHP-3.01",
+          "distributionUrls": [
+            "https://downloads.php.net/~windows/releases/archives/php-8.5.12-1-Win32-vs17-x64.zip"
+          ],
+          "distributionSha256": [
+            "0dacd6484b092b5e9ae9fa3d7f96a937caf9d874eee2d980b68ed3129741144a"
+          ],
+          "installedManifest": "components/php/scoop-manifest.json"
+        },
+        {
+          "name": "mysql",
+          "version": "26.10.0",
+          "sourceUrl": "https://dev.mysql.com/get/Downloads/MySQL-26.10/mysql-26.10.0-winx64.msi",
+          "license": "GPL-2.0-only",
+          "distributionUrls": [
+            "https://dev.mysql.com/get/Downloads/MySQL-26.10/mysql-26.10.0-winx64.msi"
+          ],
+          "distributionSha256": [
+            "f49e3d04b871ad8cd586b3cd40a397673ab4963bf1fe79bb6df68efca364b63f"
+          ],
+          "installedManifest": "components/mysql/scoop-manifest.json"
+        },
+        {
+          "name": "postgresql",
+          "version": "18.6-5",
+          "sourceUrl": "https://get.enterprisedb.com/postgresql/postgresql-18.6-5-windows-x64-binaries.zip",
+          "license": "PostgreSQL",
+          "distributionUrls": [
+            "https://get.enterprisedb.com/postgresql/postgresql-18.6-5-windows-x64-binaries.zip"
+          ],
+          "distributionSha256": [
+            "e2246ba91d22345bc3d017586c09ede52d9df180b1eeb480f050445f1cad84e2"
+          ],
+          "installedManifest": "components/postgresql/scoop-manifest.json",
+          "excludedApplications": [
+            {
+              "path": "components/postgresql/pgAdmin 4",
+              "reason": "Optional pgAdmin 4 administration application is not used by DEVUNRA; PostgreSQL server, clients, libraries, share data and notices remain included."
+            }
+          ],
+          "noticeUrl": "https://raw.githubusercontent.com/postgres/postgres/REL_18_6/COPYRIGHT"
+        },
+        {
+          "name": "redis",
+          "version": "8.10.3",
+          "sourceUrl": "https://github.com/redis-windows/redis-windows/releases/download/8.10.3/Redis-8.10.3-Windows-x64-msys2.zip",
+          "license": "RSALv2 OR SSPL-1.0 OR AGPL-3.0-only",
+          "distributionUrls": [
+            "https://github.com/redis-windows/redis-windows/releases/download/8.10.3/Redis-8.10.3-Windows-x64-msys2.zip"
+          ],
+          "distributionSha256": [
+            "af16df340525b431e9ec8dabfd625d5e7a233f82805b5418819904ea909c447f"
+          ],
+          "installedManifest": "components/redis/scoop-manifest.json",
+          "scoopLicense": "BSD-3-Clause",
+          "noticeUrl": "https://raw.githubusercontent.com/redis/redis/8.10.3/LICENSE.txt"
+        },
+        {
+          "name": "openssl",
+          "version": "4.1.0",
+          "sourceUrl": "https://slproweb.com/download/Win64OpenSSL-4_1_0.exe",
+          "license": "Apache-2.0",
+          "distributionUrls": [
+            "https://slproweb.com/download/Win64OpenSSL-4_1_0.exe"
+          ],
+          "distributionSha256": [
+            "c670e809bb7dae85c54bcf734d4981d1523f1cb1b6b77947ac3e5df46ff1ca48"
+          ],
+          "installedManifest": "components/openssl/scoop-manifest.json"
+        },
+        {
+          "name": "composer",
+          "version": "2.11.1",
+          "sourceUrl": "https://getcomposer.org/download/2.11.1/composer.phar",
+          "license": "MIT",
+          "distributionUrls": [
+            "https://getcomposer.org/download/2.11.1/composer.phar"
+          ],
+          "distributionSha256": [
+            "6f1b891e1d4927d62740276c540fb490e47689e19e102c49e8da849794882f8c"
+          ],
+          "installedManifest": "components/composer/scoop-manifest.json",
+          "noticeUrl": "https://raw.githubusercontent.com/composer/composer/2.11.1/LICENSE"
+        }
+      ],
+      "runtimePrerequisites": [
+        "Windows 10 x64 or later",
+        "Microsoft Visual C++ 2015-2022 x64 runtime"
+      ]
+    },
+    "portableAcceptance": {
+      "total": 95,
+      "passed": 86,
+      "failed": 0,
+      "skipped": 9,
+      "artifactWarnings": [],
+      "completedAt": "2026-11-02T15:39:36.752Z",
+      "skippedChecks": [
+        {
+          "name": "Services: version dropdown switches a portable service",
+          "reason": "No simulated service with multiple versions is present."
+        },
+        {
+          "name": "PHP: php.ini opens the editor (portable PHP only)",
+          "reason": "Installed PHP uses its own php.ini; native PHP guidance was verified."
+        },
+        {
+          "name": "PHP: switch between installed PHP versions",
+          "reason": "Two installed PHP versions are required."
+        },
+        {
+          "name": "Projects: one site runs on another PHP version",
+          "reason": "Two installed PHP versions are required."
+        },
+        {
+          "name": "Databases: studio button (simulated MySQL only)",
+          "reason": "The simulated studio is replaced by real phpMyAdmin."
+        },
+        {
+          "name": "Engines: Nginx serves PHP while Apache is stopped",
+          "reason": "Native Nginx and PHP FastCGI are required."
+        },
+        {
+          "name": "Engines: MongoDB creates and drops a real database",
+          "reason": "mongod and mongosh are required."
+        },
+        {
+          "name": "Engines: Memcached stores and retrieves through its real protocol",
+          "reason": "Memcached is not installed."
+        },
+        {
+          "name": "Projects: Laravel and WordPress installers (E2E_INSTALLERS=1)",
+          "reason": "Set E2E_INSTALLERS=1 to download Laravel and WordPress."
+        }
+      ],
+      "status": "passed",
+      "runId": 41472094886,
+      "mode": "exact-final-portable-zip-bundled-only",
+      "requiredNativeServices": [
+        "apache",
+        "php",
+        "mysql",
+        "postgresql",
+        "redis"
+      ],
+      "sourceCommit": "e4bfab42cd26b3f87e0c7c5e90c855732406f6f7",
+      "requestedPathContainsSpaces": true,
+      "originalArchivePreservedAfterPass": true,
+      "runtimePatched": false,
+      "artifact": {
+        "portableFile": "DEVUNRA-1.2.0-win-x64.zip",
+        "portableSha256": "931a2fe1bbaffb344ffb180810df68d13a0821b425b005584dea89194056ed0a",
+        "portableBytes": 868814873
+      }
+    },
+    "portableReleaseAccepted": true,
+    "diagnosticHistory": [
+      {
+        "historical": true,
+        "passed": 73,
+        "failed": 15,
+        "skipped": 7,
+        "total": 95,
+        "runId": 41333713605
+      },
+      {
+        "historical": true,
+        "passed": 86,
+        "failed": 1,
+        "skipped": 8,
+        "total": 95,
+        "completedAt": "2026-11-02T03:39:29.292Z",
+        "runId": 41382675272,
+        "mode": "packaged-app-with-installed-host-engines",
+        "requiredNativeServices": [
+          "apache",
+          "php",
+          "mysql",
+          "postgresql",
+          "redis"
+        ],
+        "failedChecks": [
+          {
+            "name": "Databases: phpMyAdmin installs, opens and logs in to DEVUNRA MySQL",
+            "error": "page.screenshot: Timeout 30000ms exceeded."
+          }
+        ],
+        "skippedChecks": [
+          {
+            "name": "Services: version dropdown switches a portable service",
+            "reason": "No simulated service with multiple versions is present."
+          },
+          {
+            "name": "PHP: php.ini opens the editor (portable PHP only)",
+            "reason": "Installed PHP uses its own php.ini; native PHP guidance was verified."
+          },
+          {
+            "name": "PHP: switch between installed PHP versions",
+            "reason": "Two installed PHP versions are required."
+          },
+          {
+            "name": "Projects: one site runs on another PHP version",
+            "reason": "Two installed PHP versions are required."
+          },
+          {
+            "name": "Databases: studio button (simulated MySQL only)",
+            "reason": "The simulated studio is replaced by real phpMyAdmin."
+          },
+          {
+            "name": "Engines: Nginx serves PHP while Apache is stopped",
+            "reason": "Native Nginx and PHP FastCGI are required."
+          },
+          {
+            "name": "Engines: Memcached stores and retrieves through its real protocol",
+            "reason": "Memcached is not installed."
+          },
+          {
+            "name": "Projects: Laravel and WordPress installers (E2E_INSTALLERS=1)",
+            "reason": "Set E2E_INSTALLERS=1 to download Laravel and WordPress."
+          }
+        ],
+        "note": "The only failed check timed out while capturing the auxiliary phpMyAdmin window after login and database-tree assertions. It remains a failed diagnostic run."
+      },
       {
         "runId": 41384596865,
         "status": "installer_test_path_failed_before_e2e",
@@ -315,7 +742,8 @@
         "installerBuilt": true,
         "installerExitCode": 0,
         "bundledAppTestsExecuted": false,
-        "note": "The test used native NSIS unquoted /D syntax, while the installed builder template reparses D with StdUtils. The test invocation is corrected; bundled acceptance is still pending."
+        "note": "The test used native NSIS unquoted /D syntax, while the installed builder template reparses D with StdUtils. The test invocation is corrected; This historical attempt did not accept the release.",
+        "historical": true
       },
       {
         "runId": 41398521598,
@@ -328,8 +756,84 @@
         "installedExecutableMatchesPackaged": true,
         "firstWindowTimeoutMs": 120000,
         "bundledAppTestsExecuted": false,
-        "note": "The installer successfully placed the application into the exact requested path containing spaces. The installed executable matched the packaged executable SHA-256. The harness timed out waiting for the first application window before any E2E check ran; the bundled release remains unaccepted."
+        "note": "The installer successfully placed the application into the exact requested path containing spaces. The installed executable matched the packaged executable SHA-256. The harness timed out waiting for the first application window before any E2E check ran; This historical attempt did not accept the release.",
+        "historical": true
+      },
+      {
+        "historical": true,
+        "runId": 41403105086,
+        "note": "Installed payload integrity refused missing pgAdmin files; no bundled E2E ran.",
+        "releaseAccepted": false
+      },
+      {
+        "historical": true,
+        "runId": 41424081178,
+        "note": "Portable payload passed physical Node validation, but Electron ASAR virtual-directory handling rejected the unused pgAdmin archive before first window.",
+        "releaseAccepted": false
+      },
+      {
+        "historical": true,
+        "runId": 41436451699,
+        "note": "The early preparation gate refused PostgreSQL payload without its exact server notice; no distributable built.",
+        "releaseAccepted": false
+      },
+      {
+        "historical": true,
+        "runId": 41437810729,
+        "note": "Config reset encountered a transient Windows file sharing lock; all five native service checks worked.",
+        "releaseAccepted": false,
+        "total": 95,
+        "passed": 85,
+        "failed": 1,
+        "skipped": 9,
+        "failedChecks": [
+          {
+            "name": "Services: hand edits survive a reload, Pakai bawaan restores",
+            "error": "locator.waitFor: Timeout 30000ms exceeded."
+          }
+        ]
+      },
+      {
+        "historical": true,
+        "runId": 41443626889,
+        "note": "Disposable patched diagnostic fixed config reset; HTTPS and mail checks hit an Apache restart transition. This diagnostic copy was never released.",
+        "releaseAccepted": false,
+        "total": 95,
+        "passed": 84,
+        "failed": 2,
+        "skipped": 9,
+        "failedChecks": [
+          {
+            "name": "HTTPS: leaf verifies against the DEVUNRA root CA",
+            "error": "connect ECONNREFUSED 127.0.0.1:38443"
+          },
+          {
+            "name": "Mail: PHP mail() is captured",
+            "error": "fetch failed"
+          }
+        ]
+      },
+      {
+        "historical": true,
+        "total": 95,
+        "passed": 86,
+        "failed": 0,
+        "skipped": 9,
+        "artifactWarnings": [],
+        "completedAt": "2026-11-02T14:58:09.832Z",
+        "runId": 41465385820,
+        "diagnosticOnly": true,
+        "releaseAccepted": false,
+        "note": "Disposable retained package with compiled source changes; this is not the final distributed installer."
       }
+    ],
+    "correctedBehaviors": [
+      "Windows Apache/PHP FastCGI paths and mail command quoting",
+      "PostgreSQL owned process lifecycle and orderly stop",
+      "SQL query completion state",
+      "Optional pgAdmin application excluded before manifest hashes; exact PostgreSQL server notice included",
+      "Bounded atomic rename for transient Windows sharing locks; preserve custom configuration on failed reset",
+      "Explicit Apache reload waits through an owned restart; automatic reload debounce consumed before queuing"
     ]
   },
   "installers": [
@@ -359,9 +863,33 @@
       "minimumOS": "11.0",
       "arch": "x64",
       "bundled": false
+    },
+    {
+      "file": "DEVUNRA-Setup-1.2.0.exe",
+      "size": 600627817,
+      "mib": 572.8,
+      "sha256": "e30fe25eae56b7e84bd478d1500586a60d2ec70f9194c18f4b6b7a2335c08ee6",
+      "minimumOS": "10",
+      "arch": "x64",
+      "platform": "win32",
+      "bundled": true,
+      "url": "https://github.com/Intra-Sepriansa/devunra/releases/download/v1.2.0/DEVUNRA-Setup-1.2.0.exe",
+      "acceptanceRunId": 41467081622
+    },
+    {
+      "file": "DEVUNRA-1.2.0-win-x64.zip",
+      "size": 868814873,
+      "mib": 828.57,
+      "sha256": "931a2fe1bbaffb344ffb180810df68d13a0821b425b005584dea89194056ed0a",
+      "minimumOS": "10",
+      "arch": "x64",
+      "platform": "win32",
+      "bundled": true,
+      "url": "https://github.com/Intra-Sepriansa/devunra/releases/download/v1.2.0/DEVUNRA-1.2.0-win-x64.zip",
+      "acceptanceRunId": 41472094886
     }
   ],
-  "updatedAt": "2026-11-02T06:58:34.893816+00:00",
+  "updatedAt": "2026-11-02T20:36:30.555737+00:00",
   "macInstallerIdentity": {
     "status": "passed",
     "completedAt": "2026-11-02T02:35:24.890Z",
@@ -456,5 +984,6 @@
       "originalSixServicesStillRunning": true,
       "originalServicePidsUnchanged": true
     }
-  }
+  },
+  "publishedOn": "2026-11-03"
 }

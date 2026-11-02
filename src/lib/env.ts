@@ -34,7 +34,7 @@ interface ReleaseInfo {
 
 /** Published artifacts only. Missing architectures stay out of the download picker. */
 export const RELEASE: ReleaseInfo = {
-  date: '2 Nov 2026',
+  date: '3 Nov 2026',
   mac: {
     file: `DEVUNRA-${VERSION}-arm64.dmg`, mb: 979.81,
     sha256: '0ebb4d7de441458101dd6fac1ab6f3a6f6377f325affe2f3b10c7108a66bc0af',
@@ -54,16 +54,18 @@ export const RELEASE: ReleaseInfo = {
     evidence: 'Diuji lewat Rosetta: 77 lulus, 0 gagal, 18 dilewati. Belum diuji pada Mac Intel fisik.',
   },
   winSetup: {
-    file: 'DEVUNRA-Setup-1.1.0.exe', mb: 83,
-    sha256: '320be0577ecbf23590ac3b10816998f88a56bba11f75680eb28ac1fcbd25eab9',
-    version: '1.1.0', date: '1 Nov 2026',
-    evidence: 'Windows 1.2.0 masih dalam perbaikan dan pengujian. Unduhan ini tetap versi 1.1.0.',
+    file: 'DEVUNRA-Setup-1.2.0.exe', mb: 572.8,
+    sha256: 'e30fe25eae56b7e84bd478d1500586a60d2ec70f9194c18f4b6b7a2335c08ee6',
+    version: '1.2.0', date: '3 Nov 2026',
+    bundledEngines: ['Apache', 'PHP', 'MySQL', 'PostgreSQL', 'Redis'],
+    evidence: 'Tes installer di Windows VM: 86 lulus, 0 gagal, 9 dilewati.',
   },
   winZip: {
-    file: 'DEVUNRA-1.1.0-win-x64.zip', mb: 111,
-    sha256: '32477937c6be3d45f948a999cd60fa153b43ff5df238a1245da371ef9b448f7d',
-    version: '1.1.0', date: '1 Nov 2026',
-    evidence: 'Windows 1.2.0 masih dalam perbaikan dan pengujian. Unduhan ini tetap versi 1.1.0.',
+    file: 'DEVUNRA-1.2.0-win-x64.zip', mb: 828.57,
+    sha256: '931a2fe1bbaffb344ffb180810df68d13a0821b425b005584dea89194056ed0a',
+    version: '1.2.0', date: '3 Nov 2026',
+    bundledEngines: ['Apache', 'PHP', 'MySQL', 'PostgreSQL', 'Redis'],
+    evidence: 'Tes ZIP portable di Windows VM: 86 lulus, 0 gagal, 9 dilewati.',
   },
 };
 
