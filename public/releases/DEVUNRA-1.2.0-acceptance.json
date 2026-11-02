@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 1,
+  "version": "1.2.0",
+  "verificationStatus": "mac_accepted_windows_pending",
+  "note": "Mac artifacts accepted and installed; Windows 1.2.0 diagnostic failures are being fixed. Test groups overlap and must not be added together.",
+  "unchangedDefaultPorts": {
+    "apache": {
+      "http": 18080,
+      "https": 18443
+    },
+    "nginx": {
+      "http": 18081,
+      "https": 18444
+    },
+    "php": 19001,
+    "mysql": 13306,
+    "postgresql": 15432,
+    "mongodb": 17017,
+    "redis": 16379,
+    "memcached": 11211,
+    "mailCatcher": 18025
+  },
+  "signingAndNotarization": "excluded_by_request",
+  "unitTests": {
+    "passed": 86,
+    "failed": 0,
+    "status": "passed"
+  },
+  "sourceMac": {
+    "status": "passed",
+    "version": "1.2.0",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "packaged": false,
+    "mode": "installed-native-engines",
+    "requiredNativeServices": [
+      "apache",
+      "php",
+      "mysql",
+      "postgresql",
+      "redis",
+      "nginx",
+      "mongodb",
+      "memcached"
+    ],
+    "total": 95,
+    "passed": 91,
+    "failed": 0,
+    "skipped": 4,
+    "skippedChecks": [
+      {
+        "name": "Services: version dropdown switches a portable service",
+        "reason": "No simulated service with multiple versions is present."
+      },
+      {
+        "name": "PHP: php.ini opens the editor (portable PHP only)",
+        "reason": "Installed PHP uses its own php.ini; native PHP guidance was verified."
+      },
+      {
+        "name": "Databases: studio button (simulated MySQL only)",
+        "reason": "The simulated studio is replaced by real phpMyAdmin."
+      },
+      {
+        "name": "Projects: Laravel and WordPress installers (E2E_INSTALLERS=1)",
+        "reason": "Set E2E_INSTALLERS=1 to download Laravel and WordPress."
+      }
+    ],
+    "completedAt": "2026-11-01T14:53:32.817Z"
+  },
+  "packagedAppleSilicon": {
+    "status": "passed",
+    "version": "1.2.0",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "packaged": true,
+    "mode": "bundled-only-minimal-path",
+    "requiredNativeServices": [
+      "apache",
+      "php",
+      "mysql",
+      "postgresql",
+      "redis",
+      "nginx",
+      "mongodb",
+      "memcached"
+    ],
+    "total": 95,
+    "passed": 89,
+    "failed": 0,
+    "skipped": 6,
+    "skippedChecks": [
+      {
+        "name": "Services: version dropdown switches a portable service",
+        "reason": "No simulated service with multiple versions is present."
+      },
+      {
+        "name": "PHP: php.ini opens the editor (portable PHP only)",
+        "reason": "Editor khusus runtime simulasi tidak berlaku pada konfigurasi PHP native ini."
+      },
+      {
+        "name": "PHP: switch between installed PHP versions",
+        "reason": "Two installed PHP versions are required."
+      },
+      {
+        "name": "Projects: one site runs on another PHP version",
+        "reason": "Two installed PHP versions are required."
+      },
+      {
+        "name": "Databases: studio button (simulated MySQL only)",
+        "reason": "The simulated studio is replaced by real phpMyAdmin."
+      },
+      {
+        "name": "Projects: Laravel and WordPress installers (E2E_INSTALLERS=1)",
+        "reason": "Set E2E_INSTALLERS=1 to download Laravel and WordPress."
+      }
+    ],
+    "completedAt": "2026-11-01T15:20:18.231Z",
+    "minimumOS": "27.0",
+    "engineVersions": {
+      "Apache": "2.4.69",
+      "Nginx": "1.31.8",
+      "PHP": "8.5.12",
+      "MySQL": "9.6.0",
+      "PostgreSQL": "16.15",
+      "MongoDB": "8.0.34",
+      "Redis": "8.4.0",
+      "Memcached": "1.6.45"
+    },
+    "targetedProtocolChecks": {
+      "passed": 13,
+      "failed": 0,
+      "completedAt": "2026-11-01T15:15:37.397Z"
+    }
+  },
+  "intelMac": {
+    "status": "passed",
+    "version": "1.2.0",
+    "platform": "darwin",
+    "architecture": "x64",
+    "packaged": true,
+    "mode": "simulated-engines-under-rosetta",
+    "physicalIntelMacTested": false,
+    "minimumOS": "11.0",
+    "total": 95,
+    "passed": 77,
+    "failed": 0,
+    "skipped": 18,
+    "skippedChecks": [
+      {
+        "name": "Services: MySQL and PHP run the real binaries when installed",
+        "reason": "mysql is simulated on this machine."
+      },
+      {
+        "name": "Errors: a failed action explains itself and offers the fix (Start MySQL)",
+        "reason": "MySQL is not installed."
+      },
+      {
+        "name": "Databases: phpMyAdmin installs, opens and logs in to DEVUNRA MySQL",
+        "reason": "Real PHP and MySQL are required for phpMyAdmin."
+      },
+      {
+        "name": "Web: PHP files in www execute through the PHP service",
+        "reason": "PHP is not installed."
+      },
+      {
+        "name": "PHP: switch between installed PHP versions",
+        "reason": "Two installed PHP versions are required."
+      },
+      {
+        "name": "Projects: one site runs on another PHP version",
+        "reason": "Two installed PHP versions are required."
+      },
+      {
+        "name": "Apache: real httpd serves .htaccess rewrites",
+        "reason": "Apache is simulated on this machine."
+      },
+      {
+        "name": "Apache: Require all denied gives 403",
+        "reason": "Apache is simulated on this machine."
+      },
+      {
+        "name": "Apache: path-based front controller",
+        "reason": "Apache is simulated on this machine."
+      },
+      {
+        "name": "Apache: host-based vhost",
+        "reason": "Apache is simulated on this machine."
+      },
+      {
+        "name": "HTTPS: leaf verifies against the DEVUNRA root CA",
+        "reason": "Apache or OpenSSL not available."
+      },
+      {
+        "name": "Mail: PHP mail() is captured",
+        "reason": "PHP not installed."
+      },
+      {
+        "name": "Engines: PostgreSQL runs for real (create, query, backup, restore, drop)",
+        "reason": "PostgreSQL not installed."
+      },
+      {
+        "name": "Engines: Redis runs the real redis-server",
+        "reason": "Redis not installed."
+      },
+      {
+        "name": "Engines: Nginx serves PHP while Apache is stopped",
+        "reason": "Native Nginx and PHP FastCGI are required."
+      },
+      {
+        "name": "Engines: MongoDB creates and drops a real database",
+        "reason": "mongod and mongosh are required."
+      },
+      {
+        "name": "Engines: Memcached stores and retrieves through its real protocol",
+        "reason": "Memcached is not installed."
+      },
+      {
+        "name": "Projects: Laravel and WordPress installers (E2E_INSTALLERS=1)",
+        "reason": "Set E2E_INSTALLERS=1 to download Laravel and WordPress."
+      }
+    ],
+    "completedAt": "2026-11-01T15:25:18.789Z"
+  },
+  "windows": {
+    "status": "fixing_diagnostic_failures",
+    "physicalDeviceTested": false,
+    "environment": "Windows Server 2022 GitHub-hosted VM",
+    "diagnostic": {
+      "passed": 73,
+      "failed": 15,
+      "skipped": 7,
+      "total": 95,
+      "runId": 41333713605
+    },
+    "releaseAccepted": false,
+    "visualCppRuntime": "VM has Microsoft Visual C++ x64 runtime preinstalled; clean OS without runtime has not been tested."
+  },
+  "installers": [
+    {
+      "file": "DEVUNRA-1.2.0-arm64.dmg",
+      "size": 1027400250,
+      "mib": 979.81,
+      "sha256": "0ebb4d7de441458101dd6fac1ab6f3a6f6377f325affe2f3b10c7108a66bc0af",
+      "minimumOS": "27.0",
+      "arch": "arm64",
+      "bundled": true
+    },
+    {
+      "file": "DEVUNRA-1.2.0-arm64-slim.dmg",
+      "size": 110209838,
+      "mib": 105.1,
+      "sha256": "cfcc7e5be67c4389c73b598ca28123d17875bba1b5e09cff048ec6969df83c04",
+      "minimumOS": "11.0",
+      "arch": "arm64",
+      "bundled": false
+    },
+    {
+      "file": "DEVUNRA-1.2.0-x64-slim.dmg",
+      "size": 118317638,
+      "mib": 112.84,
+      "sha256": "57711e96d6daaacf5148554d26ff1d4cab997d2b6a9a7cf8bcfac92c3c7b4f99",
+      "minimumOS": "11.0",
+      "arch": "x64",
+      "bundled": false
+    }
+  ],
+  "updatedAt": "2026-11-02T02:58:27.417271+00:00",
+  "macInstallerIdentity": {
+    "status": "passed",
+    "completedAt": "2026-11-02T02:35:24.890Z",
+    "checks": [
+      "read-only DMG checksum",
+      "strict deep application signature",
+      "architecture and minimum OS",
+      "compiled source and assets hashes",
+      "mounted application launch",
+      "default ports unchanged and services stopped",
+      "bundled engines resolved inside mounted image",
+      "13 native protocol checks from mounted bundle"
+    ],
+    "compiledFilesVerified": 50,
+    "compiledContentFingerprint": "06da90ac214119363ed3c5e3fcbdb37fc70507eb977ce4f29b1ce0836d5488de"
+  },
+  "installedMac": {
+    "version": "1.2.0",
+    "strictDeepSignatureVerified": true,
+    "preferencesUnchanged": true,
+    "phpSettingsUnchanged": true,
+    "activeProfileUnchanged": true,
+    "savedServiceSettingsUnchanged": true,
+    "allProfileFilesUnchanged": true,
+    "portsUnchanged": true,
+    "runningServicesRestored": [
+      "apache",
+      "nginx",
+      "php",
+      "mysql",
+      "redis",
+      "mailpit"
+    ],
+    "opensWithoutGatekeeperDialogOnThisMac": true,
+    "signing": "ad-hoc; no paid signing or Apple notarization",
+    "installedDmgSha256": "0ebb4d7de441458101dd6fac1ab6f3a6f6377f325affe2f3b10c7108a66bc0af",
+    "readOnlyProtocolChecks": {
+      "apacheHttp": {
+        "status": 200,
+        "bodyBytes": 8200,
+        "ok": true
+      },
+      "apacheHttps": {
+        "status": 200,
+        "bodyBytes": 8200,
+        "ok": true
+      },
+      "nginxHttp": {
+        "status": 200,
+        "bodyBytes": 8200,
+        "ok": true
+      },
+      "nginxHttps": {
+        "status": 200,
+        "bodyBytes": 8200,
+        "ok": true
+      },
+      "mailCatcherHttp": {
+        "status": 200,
+        "bodyBytes": 7987,
+        "ok": true
+      },
+      "redisPing": {
+        "ok": true
+      },
+      "phpFpmTcp": {
+        "ok": true
+      },
+      "mysqlReadOnlyQuery": {
+        "ok": true,
+        "serverVersion": "9.6.0",
+        "userSchemaCount": 2
+      }
+    },
+    "recordedAt": "2026-11-02T02:56:44.015821+00:00",
+    "limitations": [
+      "Existing database contents were not byte-compared while running; the read-only MySQL query confirms two non-system schemas remain accessible.",
+      "Local successful launch does not remove Gatekeeper prompts for fresh browser downloads."
+    ],
+    "ok": true,
+    "sameInstalledAppOwnsAllSixServiceProcesses": true,
+    "bundledNativeBinaryPathsConfirmedUiAndProcessList": true,
+    "appQuarantineAttributePresent": false
+  }
+}

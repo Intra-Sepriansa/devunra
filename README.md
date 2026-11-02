@@ -31,3 +31,11 @@ Perintah deploy membangun situs, mengunggah isi `dist/` ke folder rilis baru, la
 Domain `arsinode.site` terdaftar di Spaceship, tetapi DNS aktif dikelola Cloudflare (`ganz.ns.cloudflare.com` dan `jen.ns.cloudflare.com`). Record `A` untuk `devunra` memakai alamat server yang sama dengan `arsinode.site` dan mode Proxied. Konfigurasi Nginx tersimpan di `deploy/nginx/devunra.arsinode.site.conf`; berkas tersebut dipasang sebagai virtual host DEVUNRA terpisah di server.
 
 HTTPS origin memakai sertifikat Let's Encrypt untuk `devunra.arsinode.site`. Certbot memperpanjangnya melalui webroot `/var/www/devunra.arsinode.site/acme` dan memuat ulang Nginx setelah perpanjangan. Pertahankan lokasi `/.well-known/acme-challenge/` di konfigurasi HTTP dan HTTPS agar perpanjangan otomatis dapat berjalan.
+
+## Installer dan metadata rilis
+
+Repo publik ini menyimpan source website dan aset installer hasil build. Source aplikasi desktop tetap berada di repo privat yang terpisah. Installer besar disimpan pada GitHub Releases; server Arsinode menyimpan website dan metadata kecil saja.
+
+Data unduhan berada di `src/lib/env.ts`: setiap berkas mempunyai versi, kebutuhan OS/chip, SHA-256, ukuran, dan daftar engine yang benar-benar disertakan. Tautan unduhan dipatok per tag versi agar mempertahankan installer platform lama tidak bergantung pada rilis terbaru. Jangan memublikasikan data placeholder atau checksum dari build sebelumnya.
+
+Feed aplikasi ada di `public/releases/latest.json`. Terbitkan aset installer lebih dahulu dan periksa identitasnya, lalu deploy feed dan website secara atomik. Feed saat ini memuat satu pilihan untuk setiap platform/chip: Apple Silicon lengkap, Intel slim, dan Windows lengkap setelah penerimaan platform itu lulus. Pengguna macOS yang lebih lama memilih paket slim di web. Signing/notarisasi serta pemasangan otomatis installer berada di luar alur ini.

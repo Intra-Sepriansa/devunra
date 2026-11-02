@@ -658,7 +658,7 @@ main, .foot, .nav { position: relative; z-index: 1; }
 .dlx-title { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .dlx-title h3 { margin: 0; font-size: clamp(38px, 5vw, 64px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
 .dlx-ver { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 10px; border: 1px solid var(--line); border-radius: 3px; font-size: 12px; color: var(--ink-2); }
-.dlx-kind { display: inline-flex; gap: 4px; margin-top: 22px; }
+.dlx-kind { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-top: 22px; }
 .dlx-kind button { height: 30px; padding: 0 12px; border: 1px solid var(--line); border-radius: 3px; background: none; font-size: 13px; color: var(--ink-3); cursor: pointer; transition: all 0.2s; }
 .dlx-kind button[aria-checked='true'] { border-color: var(--ink); color: var(--ink); }
 .dlx-specs { display: grid; grid-template-columns: repeat(4, minmax(0, auto)); justify-content: start; gap: 8px 32px; margin-top: 24px; }
@@ -695,6 +695,7 @@ main, .foot, .nav { position: relative; z-index: 1; }
 .dlx-help-body { display: grid; gap: 12px; padding-top: 14px; overflow-wrap: anywhere; }
 .dlx-help-body p { margin: 0; }
 .dlx-help-body a { color: var(--ink); text-underline-offset: 3px; }
+.dlx-coverage { max-width: 46ch; margin-top: 14px; color: var(--ink-2); font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
 .dlx-steps li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .dlx-n { display: inline-grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--line-strong); border-radius: 50%; font-size: 11px; color: var(--ink-2); }
 .dlx-steps li:hover .dlx-n { border-color: var(--accent); color: var(--accent-ink); }

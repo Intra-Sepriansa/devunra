@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "version": "1.2.0",
+  "assets": {
+    "darwin-arm64": {
+      "url": "https://github.com/Intra-Sepriansa/devunra/releases/download/v1.2.0/DEVUNRA-1.2.0-arm64.dmg",
+      "sha256": "0ebb4d7de441458101dd6fac1ab6f3a6f6377f325affe2f3b10c7108a66bc0af",
+      "size": 1027400250,
+      "minimumOS": "27.0"
+    },
+    "darwin-x64": {
+      "url": "https://github.com/Intra-Sepriansa/devunra/releases/download/v1.2.0/DEVUNRA-1.2.0-x64-slim.dmg",
+      "sha256": "57711e96d6daaacf5148554d26ff1d4cab997d2b6a9a7cf8bcfac92c3c7b4f99",
+      "size": 118317638,
+      "minimumOS": "11.0"
+    }
+  }
+}

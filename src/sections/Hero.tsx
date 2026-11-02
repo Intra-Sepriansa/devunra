@@ -80,7 +80,7 @@ export function Hero({ mood, onMood, os }: { mood: Mood; onMood: (m: Mood) => vo
             ))}
           </h1>
           <motion.p className="hero-sub" variants={fade} initial="hidden" animate="show" custom={1}>
-            Apache, PHP, MySQL, PostgreSQL dan Redis asli. HTTPS dan domain .test lokal. macOS dan Windows.
+            Delapan engine asli dalam paket lengkap Apple Silicon, layanan inti di Windows. HTTPS dan domain .test lokal, dari satu panel.
           </motion.p>
           <motion.div className="cta" variants={fade} initial="hidden" animate="show" custom={2}>
             <MagnetLink href="#unduh" className="btn btn-primary">
@@ -96,11 +96,11 @@ export function Hero({ mood, onMood, os }: { mood: Mood; onMood: (m: Mood) => vo
           <motion.dl className="hero-specs" variants={fade} initial="hidden" animate="show" custom={3}>
             <div>
               <dt>Engine</dt>
-              <dd>6 asli</dd>
+              <dd>8 asli</dd>
             </div>
             <div>
               <dt>PHP</dt>
-              <dd>8.4–8.6</dd>
+              <dd>Multi versi</dd>
             </div>
             <div>
               <dt>OS</dt>

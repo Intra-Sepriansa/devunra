@@ -5,18 +5,20 @@ import { Reveal, SectionHead } from '../components/Reveal';
 import { fromScreen, iso, route } from '../lib/iso';
 
 /**
- * 01 Engine: every real engine DEVUNRA can run sits on the floor as a small block,
+ * Real engines sit on the floor as small blocks,
  * wired to the DEVUNRA core. Packets travel each trace into the core, whose plates
  * pull apart to show the panel, the supervisor and the engine bus.
  */
 const ENGINES = [
   // `at` is the desktop screen position, `m` the taller layout for phones.
-  { name: 'PHP', silk: 'php', ver: '8.4 · 8.5 · 8.6', at: [-480, 70], m: [-300, 120] },
-  { name: 'MySQL', silk: 'mysql', ver: '9.6', at: [-400, 210], m: [-250, 290] },
-  { name: 'PostgreSQL', silk: 'pgsql', ver: '16 · 17', at: [-170, 290], m: [-95, 410] },
-  { name: 'Redis', silk: 'redis', ver: '8.4', at: [480, 60], m: [300, 120] },
-  { name: 'Composer', silk: 'composer', ver: '2.x', at: [420, 200], m: [250, 290] },
-  { name: 'Apache', silk: 'httpd', ver: '2.4', at: [190, 290], m: [95, 410] },
+  { name: 'Apache', silk: 'httpd', ver: '2.4', at: [-490, 40], m: [-300, 120] },
+  { name: 'Nginx', silk: 'nginx', ver: '1.31', at: [490, 40], m: [300, 120] },
+  { name: 'PHP', silk: 'php', ver: '8.5', at: [-450, 180], m: [-290, 290] },
+  { name: 'MySQL', silk: 'mysql', ver: '9.6', at: [450, 180], m: [290, 290] },
+  { name: 'PostgreSQL', silk: 'pgsql', ver: '16', at: [-310, 310], m: [-250, 455] },
+  { name: 'MongoDB', silk: 'mongo', ver: '8.0', at: [310, 310], m: [250, 455] },
+  { name: 'Redis', silk: 'redis', ver: '8.4', at: [-115, 385], m: [-100, 600] },
+  { name: 'Memcached', silk: 'memcache', ver: '1.6', at: [115, 385], m: [100, 600] },
 ] as const;
 
 const NODE = 34;
@@ -56,17 +58,17 @@ export function EngineScene(): React.ReactElement {
 
   usePackets(packets, paths, dots, inView, (leg) => flash(portEls.current[leg.path]));
 
-  const vb = compact ? '-400 -280 800 790' : '-600 -280 1200 690';
+  const vb = compact ? '-400 -280 800 1010' : '-600 -280 1200 790';
 
   return (
     <section className="sect" id="engine">
       <div className="wrap">
         <SectionHead
-          title={'Engine asli,\nbukan simulasi.'}
-          sub="Pakai yang sudah terpasang di komputermu."
+          title={'Engine lokal,\nsiap dijalankan.'}
+          sub="Delapan engine dalam paket lengkap Apple Silicon. Pilih paket sesuai OS dan chip di bagian unduh."
         />
         <div ref={wrap} className={compact ? 'iso-scene is-compact' : 'iso-scene'}>
-          <svg viewBox={vb} role="img" aria-label="Engine PHP, MySQL, PostgreSQL, Redis, Composer dan phpMyAdmin terhubung ke DEVUNRA">
+          <svg viewBox={vb} role="img" aria-label="Apache, Nginx, PHP, MySQL, PostgreSQL, MongoDB, Redis, dan Memcached terhubung ke DEVUNRA">
             <Ground />
             {nodes.map((n, i) => (
               <motion.path
@@ -121,7 +123,7 @@ export function EngineScene(): React.ReactElement {
           </svg>
         </div>
         <Reveal as="p" className="scene-note mono">
-          Homebrew · Herd · Scoop · Laragon · XAMPP · Postgres.app
+          Paket lengkap Apple Silicon · Engine terpasang · Paket slim
         </Reveal>
       </div>
     </section>

@@ -1,0 +1,3 @@
+0ebb4d7de441458101dd6fac1ab6f3a6f6377f325affe2f3b10c7108a66bc0af  DEVUNRA-1.2.0-arm64.dmg
+cfcc7e5be67c4389c73b598ca28123d17875bba1b5e09cff048ec6969df83c04  DEVUNRA-1.2.0-arm64-slim.dmg
+57711e96d6daaacf5148554d26ff1d4cab997d2b6a9a7cf8bcfac92c3c7b4f99  DEVUNRA-1.2.0-x64-slim.dmg

@@ -4,24 +4,68 @@ export type Theme = 'light' | 'dark';
 export type Os = 'mac' | 'win' | null;
 
 export const REPO = 'https://github.com/Intra-Sepriansa/devunra';
-export const VERSION = '1.1.0';
-/** Direct link to a file of the latest release (asset names carry the version). */
-export const download = (file: string): string => `${REPO}/releases/latest/download/${file}`;
+export const VERSION = '1.2.0';
+/** Pin each artifact to its release so an older platform remains downloadable. */
+export const download = (file: string, version = VERSION): string => `${REPO}/releases/download/v${version}/${file}`;
 
 export interface ReleaseFile {
   file: string;
-  /** Mebibytes, as Finder and Explorer show them. */
+  /** Size in mebibytes (2^20 bytes), rounded for display. */
   mb: number;
   sha256: string;
+  version?: string;
+  date?: string;
+  chip?: string;
+  needs?: string;
+  /** Set only after the exact packaged artifact completed acceptance. */
+  bundledEngines?: string[];
+  evidence?: string;
 }
 
-/** The files attached to the GitHub release for VERSION. */
-export const RELEASE = {
-  date: '1 Nov 2026',
-  mac: { file: `DEVUNRA-${VERSION}-arm64.dmg`, mb: 105, sha256: '1b0a256a6a7d001deff0c0b42e4bc595dbf29ad39bfa3c3d4a4bd7c1aaad84ff' },
-  winSetup: { file: `DEVUNRA-Setup-${VERSION}.exe`, mb: 83, sha256: '320be0577ecbf23590ac3b10816998f88a56bba11f75680eb28ac1fcbd25eab9' },
-  winZip: { file: `DEVUNRA-${VERSION}-win-x64.zip`, mb: 111, sha256: '32477937c6be3d45f948a999cd60fa153b43ff5df238a1245da371ef9b448f7d' },
-} satisfies Record<string, ReleaseFile | string>;
+interface ReleaseInfo {
+  date: string;
+  mac: ReleaseFile;
+  macIntel?: ReleaseFile;
+  macSlim?: ReleaseFile;
+  macLegacy?: ReleaseFile;
+  winSetup: ReleaseFile;
+  winZip: ReleaseFile;
+}
+
+/** Published artifacts only. Missing architectures stay out of the download picker. */
+export const RELEASE: ReleaseInfo = {
+  date: '2 Nov 2026',
+  mac: {
+    file: `DEVUNRA-${VERSION}-arm64.dmg`, mb: 979.81,
+    sha256: '0ebb4d7de441458101dd6fac1ab6f3a6f6377f325affe2f3b10c7108a66bc0af',
+    chip: 'Apple Silicon', needs: 'macOS 27.0+',
+    bundledEngines: ['Apache', 'Nginx', 'PHP', 'MySQL', 'PostgreSQL', 'MongoDB', 'Redis', 'Memcached'],
+    evidence: 'Tes paket: 89 lulus, 0 gagal, 6 dilewati.',
+  },
+  macSlim: {
+    file: `DEVUNRA-${VERSION}-arm64-slim.dmg`, mb: 105.1,
+    sha256: 'cfcc7e5be67c4389c73b598ca28123d17875bba1b5e09cff048ec6969df83c04',
+    chip: 'Apple Silicon', needs: 'macOS 11.0+', bundledEngines: [],
+  },
+  macIntel: {
+    file: `DEVUNRA-${VERSION}-x64-slim.dmg`, mb: 112.84,
+    sha256: '57711e96d6daaacf5148554d26ff1d4cab997d2b6a9a7cf8bcfac92c3c7b4f99',
+    chip: 'Intel x64', needs: 'macOS 11.0+', bundledEngines: [],
+    evidence: 'Diuji lewat Rosetta: 77 lulus, 0 gagal, 18 dilewati. Belum diuji pada Mac Intel fisik.',
+  },
+  winSetup: {
+    file: 'DEVUNRA-Setup-1.1.0.exe', mb: 83,
+    sha256: '320be0577ecbf23590ac3b10816998f88a56bba11f75680eb28ac1fcbd25eab9',
+    version: '1.1.0', date: '1 Nov 2026',
+    evidence: 'Windows 1.2.0 masih dalam perbaikan dan pengujian. Unduhan ini tetap versi 1.1.0.',
+  },
+  winZip: {
+    file: 'DEVUNRA-1.1.0-win-x64.zip', mb: 111,
+    sha256: '32477937c6be3d45f948a999cd60fa153b43ff5df238a1245da371ef9b448f7d',
+    version: '1.1.0', date: '1 Nov 2026',
+    evidence: 'Windows 1.2.0 masih dalam perbaikan dan pengujian. Unduhan ini tetap versi 1.1.0.',
+  },
+};
 
 /** Files in public/ resolve against the relative base so the site works under /devunra/. */
 export const asset = (file: string): string => `${import.meta.env.BASE_URL}${file}`;

@@ -11,11 +11,14 @@ import type { Mood } from './Tarsier';
 type Status = 'stopped' | 'starting' | 'running' | 'stopping';
 
 const SERVICES = [
-  { id: 'apache', name: 'Apache', sub: 'system binary', ver: '2.4.67', port: 18080, log: 'AH00489: resuming normal operations' },
-  { id: 'php', name: 'PHP', sub: 'herd binary', ver: '8.5.8', port: 19001, log: 'fpm is running, pid 4120' },
-  { id: 'mysql', name: 'MySQL', sub: 'homebrew binary', ver: '9.6.0', port: 13306, log: 'ready for connections. port: 13306' },
-  { id: 'postgresql', name: 'PostgreSQL', sub: 'homebrew binary', ver: '16.15', port: 15432, log: 'database system is ready to accept connections' },
-  { id: 'redis', name: 'Redis', sub: 'homebrew binary', ver: '8.4.0', port: 16379, log: 'Ready to accept connections tcp' },
+  { id: 'apache', name: 'Apache', sub: 'native binary', ver: '2.4.69', port: 18080, log: 'AH00489: resuming normal operations' },
+  { id: 'nginx', name: 'Nginx', sub: 'native binary', ver: '1.31.8', port: 18081, log: 'start worker processes' },
+  { id: 'php', name: 'PHP', sub: 'native binary', ver: '8.5.12', port: 19001, log: 'fpm is running, pid 4120' },
+  { id: 'mysql', name: 'MySQL', sub: 'native binary', ver: '9.6.0', port: 13306, log: 'ready for connections. port: 13306' },
+  { id: 'postgresql', name: 'PostgreSQL', sub: 'native binary', ver: '16.15', port: 15432, log: 'database system is ready to accept connections' },
+  { id: 'mongodb', name: 'MongoDB', sub: 'native binary', ver: '8.0.34', port: 17017, log: 'Waiting for connections' },
+  { id: 'redis', name: 'Redis', sub: 'native binary', ver: '8.4.0', port: 16379, log: 'Ready to accept connections tcp' },
+  { id: 'memcached', name: 'Memcached', sub: 'native binary', ver: '1.6.45', port: 11211, log: 'server listening on 127.0.0.1:11211' },
 ] as const;
 
 type ServiceId = (typeof SERVICES)[number]['id'];

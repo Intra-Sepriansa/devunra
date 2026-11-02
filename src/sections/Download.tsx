@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Reveal, SectionHead } from '../components/Reveal';
 import { Tarsier, type Mood } from '../components/Tarsier';
-import { RELEASE, REPO, VERSION, download, type Os, type ReleaseFile } from '../lib/env';
+import { RELEASE, REPO, VERSION, asset, download, type Os, type ReleaseFile } from '../lib/env';
 
 type Platform = 'mac' | 'win';
 type Pick = ReleaseFile & { label: string; kind: string; format: string; first: string };
@@ -15,7 +15,12 @@ const PLATFORMS: Record<Platform, { name: string; chip: string; needs: string; f
     name: 'macOS',
     chip: 'Apple Silicon',
     needs: 'macOS 12+',
-    files: [{ ...RELEASE.mac, label: 'Unduh .dmg', kind: 'Disk image', format: '.dmg', first: 'Buka .dmg, seret DEVUNRA ke Applications.' }],
+    files: [
+      { ...RELEASE.mac, label: 'Unduh .dmg', kind: RELEASE.mac.bundledEngines?.length ? 'Apple Silicon · lengkap' : RELEASE.macIntel ? 'Apple Silicon' : 'Disk image', format: '.dmg', first: 'Buka .dmg, seret DEVUNRA ke Applications.' },
+      ...(RELEASE.macSlim ? [{ ...RELEASE.macSlim, label: 'Unduh .dmg', kind: 'Apple Silicon · slim', format: '.dmg', first: 'Buka .dmg, seret DEVUNRA ke Applications.' }] : []),
+      ...(RELEASE.macIntel ? [{ ...RELEASE.macIntel, label: 'Unduh .dmg', kind: RELEASE.macIntel.bundledEngines?.length ? 'Intel' : 'Intel · slim', format: '.dmg', first: 'Buka .dmg, seret DEVUNRA ke Applications.' }] : []),
+      ...(RELEASE.macLegacy ? [{ ...RELEASE.macLegacy, label: 'Unduh .dmg', kind: 'Apple Silicon · versi lama', format: '.dmg', first: 'Buka .dmg, seret DEVUNRA ke Applications.' }] : []),
+    ],
     steps: [
       { text: 'Buka DEVUNRA dari Applications. Jika macOS tidak bisa memverifikasi app, pilih Selesai. Di System Settings › Privacy & Security, pilih Open Anyway untuk DEVUNRA, lalu konfirmasi Open / Buka.' },
       { text: 'Di DEVUNRA, buka Settings › Engine › Pasang semua.' },
@@ -37,11 +42,10 @@ const PLATFORMS: Record<Platform, { name: string; chip: string; needs: string; f
 };
 
 const NEW = [
-  { label: 'Apache asli + .htaccess', href: '#jalur' },
-  { label: 'HTTPS lokal', href: '#jalur' },
-  { label: 'Domain .test', href: '#jalur' },
-  { label: 'Pasang engine sekali klik', href: '#app' },
-  { label: 'mail() PHP tertangkap', href: '#app' },
+  { label: 'Engine dalam paket', href: '#engine' },
+  { label: 'Nginx, MongoDB, Memcached', href: '#engine' },
+  { label: 'Cek pembaruan', href: asset(`releases/DEVUNRA-${VERSION}-laporan.html`) },
+  { label: 'Paket Mac Intel', href: '#unduh' },
 ];
 
 function useCopy(): [boolean, (text: string) => void] {
@@ -115,7 +119,7 @@ function DownloadButton({ file, onState }: { file: Pick; onState: (busy: boolean
     ];
   };
   return (
-    <motion.a className="btn btn-primary dlx-go" href={download(file.file)} rel="noopener" onClick={fire} whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
+    <motion.a className="btn btn-primary dlx-go" href={download(file.file, file.version)} rel="noopener" onClick={fire} whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
       <motion.span
         className="dlx-fill"
         aria-hidden="true"
@@ -147,6 +151,9 @@ export function Download({ os }: { os: Os }): React.ReactElement {
   const [mood, setMood] = useState<Mood>('sleep');
   const platform = PLATFORMS[pick];
   const file = platform.files[Math.min(fileIdx, platform.files.length - 1)];
+  const steps = file.bundledEngines?.length
+    ? [platform.steps[0], { text: 'Engine sudah disertakan. Buka Services, lalu Start layanan yang dibutuhkan.' }]
+    : platform.steps;
 
   const choose = (next: Platform) => {
     setPick(next);
@@ -189,12 +196,12 @@ export function Download({ os }: { os: Os }): React.ReactElement {
                   <div className="dlx-title">
                     <h3>{platform.name}</h3>
                     <span className="dlx-ver mono">
-                      <span className="led led-on" />v{VERSION}
+                      <span className="led led-on" />v{file.version ?? VERSION}
                     </span>
                   </div>
 
                   {platform.files.length > 1 && (
-                    <div className="dlx-kind" role="radiogroup" aria-label="Jenis file">
+                    <div className="dlx-kind" role="radiogroup" aria-label="Pilihan unduhan">
                       {platform.files.map((f, i) => (
                         <button key={f.file} type="button" role="radio" aria-checked={i === fileIdx} onClick={() => setFileIdx(i)}>
                           {f.kind}
@@ -205,10 +212,10 @@ export function Download({ os }: { os: Os }): React.ReactElement {
 
                   <dl className="dlx-specs mono">
                     {[
-                      ['Chip', platform.chip],
+                      ['Chip', file.chip ?? platform.chip],
                       ['Format', file.format],
-                      ['Ukuran', `${file.mb} MB`],
-                      ['Butuh', platform.needs],
+                      ['Ukuran', `${file.mb} MiB`],
+                      ['Butuh', file.needs ?? platform.needs],
                     ].map(([k, v]) => (
                       <div key={k}>
                         <dt>{k}</dt>
@@ -223,14 +230,22 @@ export function Download({ os }: { os: Os }): React.ReactElement {
 
                   <div className="dlx-actions">
                     <DownloadButton file={file} onState={(busy) => setMood(busy ? 'busy' : 'awake')} />
-                    <span className="dlx-date mono">Rilis {RELEASE.date}</span>
+                    <span className="dlx-date mono">Rilis {file.date ?? RELEASE.date}</span>
                   </div>
                   <Checksum sha={file.sha256} />
+                  {file.bundledEngines && (
+                    <p className="dlx-coverage">
+                      {file.bundledEngines.length
+                        ? `Engine dalam paket: ${file.bundledEngines.join(', ')}.`
+                        : 'Paket slim berisi aplikasi. Pasang engine lewat Settings › Engine.'}
+                    </p>
+                  )}
+                  {file.evidence && <p className="dlx-coverage">{file.evidence}</p>}
                 </div>
 
                 <div className="dlx-guide">
                   <ol className="dlx-steps">
-                    {[{ text: file.first }, ...platform.steps].map((s, i) => (
+                    {[{ text: file.first }, ...steps].map((s, i) => (
                       <motion.li
                         key={s.text}
                         initial={{ opacity: 0, x: 14 }}
@@ -242,15 +257,21 @@ export function Download({ os }: { os: Os }): React.ReactElement {
                       </motion.li>
                     ))}
                   </ol>
+                  {pick === 'win' && Boolean(file.bundledEngines?.length) && (
+                    <p className="dlx-coverage">
+                      Engine Windows membutuhkan Microsoft Visual C++ x64. Jika belum terpasang,{' '}
+                      <a href="https://aka.ms/vc14/vc_redist.x64.exe" target="_blank" rel="noopener noreferrer">unduh runtime resmi Microsoft</a>.
+                    </p>
+                  )}
                   {pick === 'mac' && (
                     <details className="dlx-help">
                       <summary>Masih tidak bisa dibuka?</summary>
                       <div className="dlx-help-body">
                         <p>Versi macOS ini belum dinotarisasi Apple. Izinkan hanya salinan dari tautan unduhan resmi di halaman ini.</p>
-                        <p>Open Anyway belum muncul? Coba buka DEVUNRA dari Applications sekali lagi, lalu kembali ke Privacy &amp; Security. Di macOS Monterey, pengaturannya ada di System Preferences › Security &amp; Privacy › General.</p>
+                        <p>Open Anyway belum muncul? Coba buka DEVUNRA dari Applications sekali lagi, lalu kembali ke Privacy &amp; Security. Di macOS 11/12, pengaturannya ada di System Preferences › Security &amp; Privacy › General.</p>
                         <p>Alternatif lewat Terminal: perintah ini menghapus karantina hanya pada DEVUNRA.</p>
                         <CommandChip cmd={'xattr -dr com.apple.quarantine "/Applications/DEVUNRA.app"'} />
-                        <p>Jika muncul “Operation not permitted”, periksa izin aplikasi terminal yang dipakai di System Settings › Privacy &amp; Security › App Management. Setelah mengubah izin, buka ulang terminal sebelum mencoba lagi.</p>
+                        <p>Jika muncul “Operation not permitted” dan Mac menyediakan izin App Management, periksa izin aplikasi terminal yang dipakai di System Settings › Privacy &amp; Security › App Management. Setelah mengubah izin, buka ulang terminal sebelum mencoba lagi.</p>
                         <a href="https://support.apple.com/id-id/102445" target="_blank" rel="noopener noreferrer">Petunjuk resmi Apple ↗</a>
                       </div>
                     </details>
@@ -275,6 +296,10 @@ export function Download({ os }: { os: Os }): React.ReactElement {
           Versi lama dan catatan rilis ada di{' '}
           <a href={`${REPO}/releases`} target="_blank" rel="noopener noreferrer">
             GitHub Releases
+          </a>
+          .{' '}
+          <a href={asset(`releases/DEVUNRA-${VERSION}-laporan.html`)} target="_blank" rel="noopener noreferrer">
+            Laporan pengujian
           </a>
           .
         </Reveal>
