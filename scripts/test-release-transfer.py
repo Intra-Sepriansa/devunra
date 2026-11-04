@@ -16,9 +16,11 @@ sys.dont_write_bytecode = True
 spec = importlib.util.spec_from_file_location("release_transfer", Path(__file__).with_name("release-transfer.py"))
 transfer = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(transfer)
-NAME = "DEVUNRA-Setup-1.2.0.exe"
+NAME = "DEVUNRA-Setup-1.3.0.exe"
 CONTENT = b"Harmless Windows asset fixture; never executed."
 SHA = hashlib.sha256(CONTENT).hexdigest()
+CHECK_IMMUTABLE = transfer.check_immutable_release
+APPROVED_RELEASE = transfer.approved_release
 
 
 class TransferFixtures(unittest.TestCase):
@@ -28,6 +30,17 @@ class TransferFixtures(unittest.TestCase):
         self.root = Path(self.temporary.name)
         self.archive = self.root / "archive.zip"
         self.output = self.root / "output"
+        self.approval = {"releaseId": 12345, "assets": {}}
+        approved = patch.object(transfer, "approved_release", return_value=self.approval)
+        immutable = patch.object(transfer, "check_immutable_release")
+        approved.start()
+        immutable.start()
+        self.addCleanup(approved.stop)
+        self.addCleanup(immutable.stop)
+
+    def approve(self, name=NAME, asset_bytes=len(CONTENT), asset_sha=SHA, archive_bytes=1, archive_sha=SHA):
+        self.approval["assets"][name] = dict(accepted=True, artifactId=123, assetBytes=asset_bytes,
+            assetSha256=asset_sha, archiveBytes=archive_bytes, archiveSha256=archive_sha)
 
     def archive_with(self, entries):
         with zipfile.ZipFile(self.archive, "w", compression=zipfile.ZIP_DEFLATED) as bundle:
@@ -39,6 +52,7 @@ class TransferFixtures(unittest.TestCase):
                     asset_bytes=len(CONTENT), asset_sha=SHA,
                     archive_bytes=self.archive.stat().st_size, archive_sha=transfer.digest(self.archive))
         args.update(overrides)
+        self.approve(args["name"], args["asset_bytes"], args["asset_sha"], args["archive_bytes"], args["archive_sha"])
         return transfer.extract_verified(**args)
 
     def test_exact_file_only_and_no_archive_paths_are_extracted(self):
@@ -93,13 +107,62 @@ class TransferFixtures(unittest.TestCase):
         self.assertEqual(file.read_bytes(), b"existing")
 
     def test_mac_and_other_versions_are_not_permitted(self):
-        for name in ["DEVUNRA-1.2.0-arm64.dmg", "DEVUNRA-Setup-1.1.0.exe", "../" + NAME]:
+        for name in ["DEVUNRA-1.2.0-arm64.dmg", "DEVUNRA-Setup-1.2.0.exe", "../" + NAME]:
             with self.subTest(name=name), self.assertRaises(transfer.TransferError):
                 transfer.check_metadata(name, 1, SHA, 1, SHA)
+
+    def test_missing_or_unaccepted_approval_prevents_transfer(self):
+        with self.assertRaisesRegex(transfer.TransferError, "committed final acceptance"):
+            transfer.check_approval(NAME, len(CONTENT), SHA, 1, SHA)
+        self.approve()
+        self.approval["assets"][NAME]["accepted"] = False
+        with self.assertRaisesRegex(transfer.TransferError, "committed final acceptance"):
+            transfer.check_approval(NAME, len(CONTENT), SHA, 1, SHA)
+
+    def test_approval_pins_source_run_commit_and_public_release_identity(self):
+        import json
+        approval = dict(schemaVersion=1, repository=transfer.REPOSITORY, tag=transfer.TAG,
+                        sourceRunId=transfer.SOURCE_RUN_ID, sourceCommit=transfer.SOURCE_COMMIT,
+                        releaseId=12345, proofSha256=SHA, assets={})
+        target = self.root / "approval.json"
+        with patch.object(transfer, "APPROVAL_PATH", target):
+            target.write_text(json.dumps(approval))
+            self.assertEqual(APPROVED_RELEASE(), approval)
+            for field, value in [("sourceRunId", 41789979078), ("sourceCommit", "0" * 40),
+                                 ("releaseId", None), ("proofSha256", None), ("tag", "v1.2.0"), ("repository", "elsewhere/repo")]:
+                with self.subTest(field=field):
+                    target.write_text(json.dumps({**approval, field: value}))
+                    with self.assertRaisesRegex(transfer.TransferError, "have not been approved"):
+                        APPROVED_RELEASE()
+
+    def test_approval_requires_every_inner_and_outer_metadata_field(self):
+        self.approve()
+        for field, value in [("assetBytes", 9), ("assetSha256", "0" * 64),
+                             ("archiveBytes", 9), ("archiveSha256", "0" * 64), ("artifactId", None)]:
+            with self.subTest(field=field):
+                self.approve()
+                self.approval["assets"][NAME][field] = value
+                with self.assertRaisesRegex(transfer.TransferError, "committed final acceptance"):
+                    transfer.check_approval(NAME, len(CONTENT), SHA, 1, SHA)
+
+    def test_immutable_release_checks_every_existing_asset(self):
+        import json
+        frozen = json.loads(transfer.IMMUTABLE_PATH.read_text())
+        self.assertEqual(len(frozen["assets"]), 8)
+        with patch.object(transfer, "release_assets", return_value=frozen["assets"]) as assets:
+            CHECK_IMMUTABLE()
+        assets.assert_called_once_with(431015359, "v1.2.0")
+        for original in frozen["assets"]:
+            changed = [dict(asset) for asset in frozen["assets"]]
+            next(asset for asset in changed if asset["id"] == original["id"])["digest"] = "sha256:" + "0" * 64
+            with self.subTest(name=original["name"]), patch.object(transfer, "release_assets", return_value=changed):
+                with self.assertRaisesRegex(transfer.TransferError, "immutable v1.2.0"):
+                    CHECK_IMMUTABLE()
 
     def asset_file(self):
         file = self.root / NAME
         file.write_bytes(CONTENT)
+        self.approve()
         return file
 
     def remote_asset(self, **overrides):

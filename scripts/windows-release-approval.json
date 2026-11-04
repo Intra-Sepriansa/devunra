@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "repository": "Intra-Sepriansa/devunra",
+  "tag": "v1.3.0",
+  "sourceRunId": 41837447669,
+  "sourceCommit": "aa557a3049bc6b75abea7d9359e01d4e0b0dcd45",
+  "releaseId": 434025917,
+  "proofSha256": "a036dc79b43db8c9fdff03d5accfe4d3999215269f57cca611f0da9fa4c412ae",
+  "assets": {
+    "DEVUNRA-Setup-1.3.0.exe": {
+      "accepted": true,
+      "artifactId": 13330159056,
+      "assetBytes": 453227888,
+      "assetSha256": "183e091eb24916ebacea7fa26c6d6a9f2f42053d3c42a69e54e40effddc3b093",
+      "archiveBytes": 1093107372,
+      "archiveSha256": "183e16fb210b47cb695dfc940435371bdd5cdedd5930993174bcb0b2fad886bb"
+    },
+    "DEVUNRA-1.3.0-win-x64.zip": {
+      "accepted": true,
+      "artifactId": 13330159056,
+      "assetBytes": 639851568,
+      "assetSha256": "e372dfde814703d073921cc36c5eb5be63b2ddffb3ccab10d3ee10849f287a69",
+      "archiveBytes": 1093107372,
+      "archiveSha256": "183e16fb210b47cb695dfc940435371bdd5cdedd5930993174bcb0b2fad886bb"
+    }
+  }
+}
