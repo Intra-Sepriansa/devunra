@@ -14,11 +14,10 @@ const ENGINES = [
   { name: 'Apache', silk: 'httpd', ver: '2.4', at: [-490, 40], m: [-300, 120] },
   { name: 'Nginx', silk: 'nginx', ver: '1.31', at: [490, 40], m: [300, 120] },
   { name: 'PHP', silk: 'php', ver: '8.5', at: [-450, 180], m: [-290, 290] },
-  { name: 'MySQL', silk: 'mysql', ver: '9.6', at: [450, 180], m: [290, 290] },
-  { name: 'PostgreSQL', silk: 'pgsql', ver: '16', at: [-310, 310], m: [-250, 455] },
-  { name: 'MongoDB', silk: 'mongo', ver: '8.0', at: [310, 310], m: [250, 455] },
-  { name: 'Redis', silk: 'redis', ver: '8.4', at: [-115, 385], m: [-100, 600] },
-  { name: 'Memcached', silk: 'memcache', ver: '1.6', at: [115, 385], m: [100, 600] },
+  { name: 'MySQL', silk: 'mysql', ver: '26.10', at: [450, 180], m: [290, 290] },
+  { name: 'PostgreSQL', silk: 'pgsql', ver: '18.6', at: [-310, 310], m: [-250, 455] },
+  { name: 'MongoDB', silk: 'mongo', ver: '9.0', at: [310, 310], m: [250, 455] },
+  { name: 'Redis', silk: 'redis', ver: '8.10', at: [0, 385], m: [0, 600] },
 ] as const;
 
 const NODE = 34;
@@ -65,10 +64,10 @@ export function EngineScene(): React.ReactElement {
       <div className="wrap">
         <SectionHead
           title={'Engine lokal,\nsiap dijalankan.'}
-          sub="Delapan engine dalam paket lengkap Apple Silicon. Pilih paket sesuai OS dan chip di bagian unduh."
+          sub="Tujuh engine asli dalam paket Windows. Pilih paket sesuai OS dan chip di bagian unduh."
         />
         <div ref={wrap} className={compact ? 'iso-scene is-compact' : 'iso-scene'}>
-          <svg viewBox={vb} role="img" aria-label="Apache, Nginx, PHP, MySQL, PostgreSQL, MongoDB, Redis, dan Memcached terhubung ke DEVUNRA">
+          <svg viewBox={vb} role="img" aria-label="Apache, Nginx, PHP, MySQL, PostgreSQL, MongoDB, dan Redis terhubung ke DEVUNRA">
             <Ground />
             {nodes.map((n, i) => (
               <motion.path
@@ -123,7 +122,7 @@ export function EngineScene(): React.ReactElement {
           </svg>
         </div>
         <Reveal as="p" className="scene-note mono">
-          Paket lengkap Apple Silicon · Engine terpasang · Paket slim
+          Paket Windows · Engine terpasang · Paket slim
         </Reveal>
       </div>
     </section>

@@ -13,12 +13,11 @@ type Status = 'stopped' | 'starting' | 'running' | 'stopping';
 const SERVICES = [
   { id: 'apache', name: 'Apache', sub: 'native binary', ver: '2.4.69', port: 18080, log: 'AH00489: resuming normal operations' },
   { id: 'nginx', name: 'Nginx', sub: 'native binary', ver: '1.31.8', port: 18081, log: 'start worker processes' },
-  { id: 'php', name: 'PHP', sub: 'native binary', ver: '8.5.12', port: 19001, log: 'fpm is running, pid 4120' },
-  { id: 'mysql', name: 'MySQL', sub: 'native binary', ver: '9.6.0', port: 13306, log: 'ready for connections. port: 13306' },
-  { id: 'postgresql', name: 'PostgreSQL', sub: 'native binary', ver: '16.15', port: 15432, log: 'database system is ready to accept connections' },
-  { id: 'mongodb', name: 'MongoDB', sub: 'native binary', ver: '8.0.34', port: 17017, log: 'Waiting for connections' },
-  { id: 'redis', name: 'Redis', sub: 'native binary', ver: '8.4.0', port: 16379, log: 'Ready to accept connections tcp' },
-  { id: 'memcached', name: 'Memcached', sub: 'native binary', ver: '1.6.45', port: 11211, log: 'server listening on 127.0.0.1:11211' },
+  { id: 'php', name: 'PHP', sub: 'FastCGI', ver: '8.5.12', port: 19001, log: 'FastCGI ready on 127.0.0.1:19001' },
+  { id: 'mysql', name: 'MySQL', sub: 'native binary', ver: '26.10.0', port: 13306, log: 'ready for connections. port: 13306' },
+  { id: 'postgresql', name: 'PostgreSQL', sub: 'native binary', ver: '18.6', port: 15432, log: 'database system is ready to accept connections' },
+  { id: 'mongodb', name: 'MongoDB', sub: 'native binary', ver: '9.0.4', port: 17017, log: 'Waiting for connections' },
+  { id: 'redis', name: 'Redis', sub: 'native binary', ver: '8.10.3', port: 16379, log: 'Ready to accept connections tcp' },
 ] as const;
 
 type ServiceId = (typeof SERVICES)[number]['id'];

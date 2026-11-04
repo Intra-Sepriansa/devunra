@@ -29,7 +29,7 @@ const PLATFORMS: Record<Platform, { name: string; chip: string; needs: string; f
   win: {
     name: 'Windows',
     chip: 'x64',
-    needs: 'Windows 10+',
+    needs: 'Windows 11 x64 / Server 2022 x64',
     files: [
       { ...RELEASE.winSetup, label: 'Unduh .exe', kind: 'Installer', format: '.exe', first: 'Jalankan installer, pilih folder.' },
       { ...RELEASE.winZip, label: 'Unduh .zip', kind: 'Portable', format: '.zip', first: 'Ekstrak .zip, jalankan DEVUNRA.exe.' },
@@ -40,13 +40,6 @@ const PLATFORMS: Record<Platform, { name: string; chip: string; needs: string; f
     ],
   },
 };
-
-const NEW = [
-  { label: 'Engine dalam paket', href: '#engine' },
-  { label: 'Nginx, MongoDB, Memcached', href: '#engine' },
-  { label: 'Cek pembaruan', href: asset(`releases/DEVUNRA-${VERSION}-laporan.html`) },
-  { label: 'Paket Mac Intel', href: '#unduh' },
-];
 
 function useCopy(): [boolean, (text: string) => void] {
   const [done, setDone] = useState(false);
@@ -151,6 +144,16 @@ export function Download({ os }: { os: Os }): React.ReactElement {
   const [mood, setMood] = useState<Mood>('sleep');
   const platform = PLATFORMS[pick];
   const file = platform.files[Math.min(fileIdx, platform.files.length - 1)];
+  const version = file.version ?? VERSION;
+  const report = asset(`releases/DEVUNRA-${version}-laporan.html`);
+  const highlights = [
+    { label: 'Engine dalam paket', href: '#engine' },
+    ...(pick === 'mac' ? [
+      { label: 'Nginx dan MongoDB', href: '#engine' },
+      { label: 'Paket Mac Intel', href: '#unduh' },
+    ] : []),
+    { label: 'Laporan pengujian', href: report },
+  ];
   const steps = file.bundledEngines?.length
     ? [platform.steps[0], { text: 'Engine sudah disertakan. Buka Services, lalu Start layanan yang dibutuhkan.' }]
     : platform.steps;
@@ -217,7 +220,7 @@ export function Download({ os }: { os: Os }): React.ReactElement {
                       ['Ukuran', `${file.mb} MiB`],
                       ['Butuh', file.needs ?? platform.needs],
                     ].map(([k, v]) => (
-                      <div key={k}>
+                      <div key={k} className={k === 'Butuh' ? 'dlx-requirement' : undefined}>
                         <dt>{k}</dt>
                         <motion.dd key={v} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
                           {v}
@@ -239,6 +242,7 @@ export function Download({ os }: { os: Os }): React.ReactElement {
                     </p>
                   )}
                   {file.evidence && <p className="dlx-coverage">{file.evidence}</p>}
+                  {file.updateNote && <p className="dlx-coverage">{file.updateNote}</p>}
                 </div>
 
                 <div className="dlx-guide">
@@ -259,6 +263,7 @@ export function Download({ os }: { os: Os }): React.ReactElement {
                     <p className="dlx-coverage">
                       Engine Windows membutuhkan Microsoft Visual C++ x64. Jika belum terpasang,{' '}
                       <a href="https://aka.ms/vc14/vc_redist.x64.exe" target="_blank" rel="noopener noreferrer">unduh runtime resmi Microsoft</a>.
+                      {' '}Nginx memakai distribusi Win32 dan membutuhkan dukungan WoW64.
                     </p>
                   )}
                   {pick === 'mac' && (
@@ -280,9 +285,9 @@ export function Download({ os }: { os: Os }): React.ReactElement {
           </div>
 
           <div className="dlx-new">
-            <span className="dlx-k mono">Baru di {VERSION}</span>
+            <span className="dlx-k mono">Rilis {platform.name} {version}</span>
             <div className="dlx-chips">
-              {NEW.map((n) => (
+              {highlights.map((n) => (
                 <a key={n.label} href={n.href} className="dlx-chip">
                   {n.label}
                 </a>
@@ -296,7 +301,7 @@ export function Download({ os }: { os: Os }): React.ReactElement {
             GitHub Releases
           </a>
           .{' '}
-          <a href={asset(`releases/DEVUNRA-${VERSION}-laporan.html`)} target="_blank" rel="noopener noreferrer">
+          <a href={report} target="_blank" rel="noopener noreferrer">
             Laporan pengujian
           </a>
           .

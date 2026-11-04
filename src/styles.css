@@ -664,6 +664,7 @@ main, .foot, .nav { position: relative; z-index: 1; }
 .dlx-specs { display: grid; grid-template-columns: repeat(4, minmax(0, auto)); justify-content: start; gap: 8px 32px; margin-top: 24px; }
 .dlx-specs dt { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
 .dlx-specs dd { margin-top: 6px; font-size: 14px; white-space: nowrap; }
+.dlx-specs .dlx-requirement dd { white-space: normal; }
 .dlx-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 28px; }
 .dlx-go { overflow: hidden; height: 54px; padding: 0 26px; font-size: 16px; }
 .dlx-fill { position: absolute; inset: 0; background: color-mix(in srgb, var(--on-accent) 22%, transparent); transform-origin: 0 50%; transform: scaleX(0); }

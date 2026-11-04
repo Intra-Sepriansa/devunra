@@ -1,0 +1,434 @@
+{
+  "candidateAccepted": true,
+  "publiclyPublished": false,
+  "version": "1.3.0",
+  "sourceCommit": "aa557a3049bc6b75abea7d9359e01d4e0b0dcd45",
+  "runId": "41837447669",
+  "environment": "Windows Server 2022 VM with preinstalled Visual C++ x64 runtime",
+  "physicalWindowsClientTested": false,
+  "minimumWindowsKernelVersion": "10.0.20348",
+  "runtimePrerequisites": [
+    "Windows 11 x64 or Windows Server 2022 x64",
+    "WoW64 support for the official Nginx Win32 distribution",
+    "Microsoft Visual C++ 2015-2022 x64 runtime"
+  ],
+  "manifestSha256": "fda1487472c847c8c9ec3038ffb7c673ef3915203c5486335493f8d38dc9c972",
+  "requiredNative": [
+    "apache",
+    "php",
+    "mysql",
+    "postgresql",
+    "redis",
+    "nginx",
+    "mongodb"
+  ],
+  "prepackage": {
+    "runtime": {
+      "isPackaged": false,
+      "version": "1.3.0",
+      "platform": "win32",
+      "arch": "x64",
+      "executable": "D:\\a\\devunra-desktop\\devunra-desktop\\node_modules\\electron\\dist\\electron.exe"
+    },
+    "requiredNative": [
+      "apache",
+      "php",
+      "mysql",
+      "postgresql",
+      "redis",
+      "nginx",
+      "mongodb"
+    ],
+    "total": 94,
+    "passed": 89,
+    "failed": 0,
+    "skipped": 5,
+    "skippedTests": [
+      {
+        "name": "Services: version dropdown switches a portable service",
+        "ok": null,
+        "status": "skipped",
+        "reason": "No simulated service with multiple versions is present."
+      },
+      {
+        "name": "PHP: php.ini opens the editor (portable PHP only)",
+        "ok": null,
+        "status": "skipped",
+        "reason": "Installed PHP uses its own php.ini; native PHP guidance was verified."
+      },
+      {
+        "name": "PHP: switch between installed PHP versions",
+        "ok": null,
+        "status": "skipped",
+        "reason": "Two installed PHP versions are required."
+      },
+      {
+        "name": "Projects: one site runs on another PHP version",
+        "ok": null,
+        "status": "skipped",
+        "reason": "Two installed PHP versions are required."
+      },
+      {
+        "name": "Databases: studio button (simulated MySQL only)",
+        "ok": null,
+        "status": "skipped",
+        "reason": "The simulated studio is replaced by real phpMyAdmin."
+      }
+    ],
+    "artifactWarnings": [],
+    "completedAt": "2026-11-04T13:41:48.826Z"
+  },
+  "installed": {
+    "size": {
+      "fileCount": 6702,
+      "bytes": 2000952587
+    },
+    "acceptance": {
+      "runtime": {
+        "isPackaged": true,
+        "version": "1.3.0",
+        "platform": "win32",
+        "arch": "x64",
+        "executable": "D:\\a\\_temp\\DEVUNRA 1.3 installed with spaces\\DEVUNRA.exe"
+      },
+      "requiredNative": [
+        "apache",
+        "php",
+        "mysql",
+        "postgresql",
+        "redis",
+        "nginx",
+        "mongodb"
+      ],
+      "total": 94,
+      "passed": 89,
+      "failed": 0,
+      "skipped": 5,
+      "skippedTests": [
+        {
+          "name": "Services: version dropdown switches a portable service",
+          "ok": null,
+          "status": "skipped",
+          "reason": "No simulated service with multiple versions is present."
+        },
+        {
+          "name": "PHP: php.ini opens the editor (portable PHP only)",
+          "ok": null,
+          "status": "skipped",
+          "reason": "Installed PHP uses its own php.ini; native PHP guidance was verified."
+        },
+        {
+          "name": "PHP: switch between installed PHP versions",
+          "ok": null,
+          "status": "skipped",
+          "reason": "Two installed PHP versions are required."
+        },
+        {
+          "name": "Projects: one site runs on another PHP version",
+          "ok": null,
+          "status": "skipped",
+          "reason": "Two installed PHP versions are required."
+        },
+        {
+          "name": "Databases: studio button (simulated MySQL only)",
+          "ok": null,
+          "status": "skipped",
+          "reason": "The simulated studio is replaced by real phpMyAdmin."
+        }
+      ],
+      "artifactWarnings": [],
+      "completedAt": "2026-11-04T14:05:25.622Z"
+    }
+  },
+  "portable": {
+    "size": {
+      "fileCount": 6700,
+      "bytes": 2000676938
+    },
+    "acceptance": {
+      "runtime": {
+        "isPackaged": true,
+        "version": "1.3.0",
+        "platform": "win32",
+        "arch": "x64",
+        "executable": "D:\\a\\_temp\\DEVUNRA 1.3 portable with spaces\\DEVUNRA.exe"
+      },
+      "requiredNative": [
+        "apache",
+        "php",
+        "mysql",
+        "postgresql",
+        "redis",
+        "nginx",
+        "mongodb"
+      ],
+      "total": 94,
+      "passed": 89,
+      "failed": 0,
+      "skipped": 5,
+      "skippedTests": [
+        {
+          "name": "Services: version dropdown switches a portable service",
+          "ok": null,
+          "status": "skipped",
+          "reason": "No simulated service with multiple versions is present."
+        },
+        {
+          "name": "PHP: php.ini opens the editor (portable PHP only)",
+          "ok": null,
+          "status": "skipped",
+          "reason": "Installed PHP uses its own php.ini; native PHP guidance was verified."
+        },
+        {
+          "name": "PHP: switch between installed PHP versions",
+          "ok": null,
+          "status": "skipped",
+          "reason": "Two installed PHP versions are required."
+        },
+        {
+          "name": "Projects: one site runs on another PHP version",
+          "ok": null,
+          "status": "skipped",
+          "reason": "Two installed PHP versions are required."
+        },
+        {
+          "name": "Databases: studio button (simulated MySQL only)",
+          "ok": null,
+          "status": "skipped",
+          "reason": "The simulated studio is replaced by real phpMyAdmin."
+        }
+      ],
+      "artifactWarnings": [],
+      "completedAt": "2026-11-04T14:15:06.033Z"
+    }
+  },
+  "files": [
+    {
+      "filename": "DEVUNRA-Setup-1.3.0.exe",
+      "bytes": 453227888,
+      "sha256": "183e091eb24916ebacea7fa26c6d6a9f2f42053d3c42a69e54e40effddc3b093"
+    },
+    {
+      "filename": "DEVUNRA-1.3.0-win-x64.zip",
+      "bytes": 639851568,
+      "sha256": "e372dfde814703d073921cc36c5eb5be63b2ddffb3ccab10d3ee10849f287a69"
+    }
+  ],
+  "components": {
+    "apache": {
+      "fileCount": 997,
+      "bytes": 42379957
+    },
+    "composer": {
+      "fileCount": 5,
+      "bytes": 3800808
+    },
+    "mongodb": {
+      "fileCount": 12,
+      "bytes": 280341573
+    },
+    "mongosh": {
+      "fileCount": 11,
+      "bytes": 207872383
+    },
+    "mysql": {
+      "fileCount": 321,
+      "bytes": 792041114
+    },
+    "nginx": {
+      "fileCount": 35,
+      "bytes": 7752075
+    },
+    "openssl": {
+      "fileCount": 52,
+      "bytes": 20172548
+    },
+    "php": {
+      "fileCount": 81,
+      "bytes": 103333030
+    },
+    "postgresql": {
+      "fileCount": 4434,
+      "bytes": 196437741
+    },
+    "redis": {
+      "fileCount": 19,
+      "bytes": 38748051
+    }
+  },
+  "baseline": {
+    "version": "1.2.0",
+    "exeBytes": 600627817,
+    "zipBytes": 868814873
+  },
+  "comparison": [
+    {
+      "filename": "DEVUNRA-Setup-1.3.0.exe",
+      "beforeBytes": 600627817,
+      "afterBytes": 453227888,
+      "savedBytes": 147399929,
+      "reductionPercent": 24.54097609668318
+    },
+    {
+      "filename": "DEVUNRA-1.3.0-win-x64.zip",
+      "beforeBytes": 868814873,
+      "afterBytes": 639851568,
+      "savedBytes": 228963305,
+      "reductionPercent": 26.353520423677185
+    }
+  ],
+  "payloadInventory": {
+    "path": "prepackage-payload/payload-file-inventory.json",
+    "manifestPath": "prepackage-payload/engine-manifest.json",
+    "sha256": "7acc57d6ed05e2f41325ab9b4387274ab5dc405f9a13dffc485351c9e95a5586"
+  },
+  "excludedContent": [
+    {
+      "name": "postgresql",
+      "version": "18.6-5",
+      "sourceUrl": "https://get.enterprisedb.com/postgresql/postgresql-18.6-5-windows-x64-binaries.zip",
+      "license": "PostgreSQL",
+      "distributionUrls": [
+        "https://get.enterprisedb.com/postgresql/postgresql-18.6-5-windows-x64-binaries.zip"
+      ],
+      "distributionSha256": [
+        "e2246ba91d22345bc3d017586c09ede52d9df180b1eeb480f050445f1cad84e2"
+      ],
+      "installedManifest": "components/postgresql/scoop-manifest.json",
+      "excludedApplications": [
+        {
+          "path": "components/postgresql/pgAdmin 4",
+          "reason": "Optional pgAdmin 4 administration application is not used by DEVUNRA; PostgreSQL server, clients, libraries, share data and notices remain included."
+        }
+      ],
+      "noticeUrl": "https://raw.githubusercontent.com/postgres/postgres/REL_18_6/COPYRIGHT"
+    },
+    {
+      "name": "mongodb",
+      "version": "9.0.4",
+      "sourceUrl": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-9.0.4-signed.msi",
+      "license": "SSPL-1.0",
+      "distributionUrls": [
+        "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-9.0.4-signed.msi"
+      ],
+      "distributionSha256": [
+        "914085f58aaa9699d3bee720ef660db6bf83c478f4afa2aa40909ea773e5d476"
+      ],
+      "installedManifest": "components/mongodb/scoop-manifest.json",
+      "reviewedManifest": "components/mongodb/devunra-reviewed-distribution.json",
+      "actualVersionOutput": "db version v9.0.4\r\nBuild Info: {\r\n    \"version\": \"9.0.4\",\r\n    \"gitVersion\": \"64ade602b836c9adeffba7fa038c887ffab56196\",\r\n    \"modules\": [],\r\n    \"allocator\": \"tcmalloc-gperf\",\r\n    \"javascriptEngine\": \"mozjs-wasm\",\r\n    \"environment\": {\r\n        \"distmod\": \"windows\",\r\n        \"distarch\": \"amd64\",\r\n        \"target_arch\": \"amd64\"\r\n    }\r\n}",
+      "sourceCode": {
+        "version": "9.0.4",
+        "publisherMetadataUrl": "https://downloads.mongodb.org/full.json",
+        "publisherMetadataRetrievedOn": "2026-11-04",
+        "binaryGitVersion": "64ade602b836c9adeffba7fa038c887ffab56196",
+        "publicSourceGitVersion": "246de92935f8636f4f90889d418b31ae70dbaafd",
+        "publisherFieldMapping": {
+          "binaryGitVersion": "versions[version=9.0.4].githash",
+          "publicSourceGitVersion": "versions[version=9.0.4].public_githash"
+        },
+        "officialWindowsMsiUrl": "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-9.0.4-signed.msi",
+        "sourceRepositoryUrl": "https://github.com/mongodb/mongo/tree/246de92935f8636f4f90889d418b31ae70dbaafd",
+        "sourceCommitApiUrl": "https://api.github.com/repos/mongodb/mongo/commits/246de92935f8636f4f90889d418b31ae70dbaafd",
+        "sourceTreeApiUrl": "https://api.github.com/repos/mongodb/mongo/git/trees/ef875fa03318d2670e67423334be6c95515d3d96",
+        "sourceTreeSha": "ef875fa03318d2670e67423334be6c95515d3d96",
+        "sourceCommitAndTreeVerifiedOn": "2026-11-04",
+        "sourceCommitGitOriginRevId": "64ade602b836c9adeffba7fa038c887ffab56196",
+        "buildInstructionsUrl": "https://github.com/mongodb/mongo/blob/246de92935f8636f4f90889d418b31ae70dbaafd/docs/building.md",
+        "publisherLicenseInstructionsUrl": "https://www.mongodb.com/legal/licensing/server-side-public-license",
+        "sourceArchiveUrl": "https://codeload.github.com/mongodb/mongo/tar.gz/246de92935f8636f4f90889d418b31ae70dbaafd",
+        "sourceArchiveSha256": null,
+        "sourceArchiveVerification": "Not downloaded completely; optional archive checksum is unverified. The immutable public commit and source tree were verified through the publisher repository API.",
+        "identityNote": "The publisher maps the release binary githash to a distinct public_githash; the public commit also records the binary identity in GitOrigin-RevId. This is source provenance, not a claim of a reproduced build or byte-identical compilation.",
+        "metadataFile": "components/mongodb/SOURCE-MongoDB.json"
+      },
+      "excludedContent": [
+        {
+          "path": "components/mongodb/bin",
+          "kind": "development-content",
+          "patterns": [
+            "mongod.pdb",
+            "mongos.pdb"
+          ],
+          "reason": "Separate MongoDB server/router debugging symbols are not required to run either executable; the complete runtime and license notices remain included.",
+          "fileCount": 2,
+          "bytes": 2308046848,
+          "files": [
+            {
+              "path": "bin/mongod.pdb",
+              "bytes": 1395601408
+            },
+            {
+              "path": "bin/mongos.pdb",
+              "bytes": 912445440
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "openssl",
+      "version": "4.1.0",
+      "sourceUrl": "https://slproweb.com/download/Win64OpenSSL-4_1_0.exe",
+      "license": "Apache-2.0",
+      "distributionUrls": [
+        "https://slproweb.com/download/Win64OpenSSL-4_1_0.exe"
+      ],
+      "distributionSha256": [
+        "c670e809bb7dae85c54bcf734d4981d1523f1cb1b6b77947ac3e5df46ff1ca48"
+      ],
+      "installedManifest": "components/openssl/scoop-manifest.json",
+      "excludedContent": [
+        {
+          "path": "components/openssl/exp",
+          "kind": "development-content",
+          "patterns": [
+            "**/*.exp"
+          ],
+          "reason": "Linker export output is not used by the packaged OpenSSL CLI.",
+          "fileCount": 11,
+          "bytes": 879961
+        },
+        {
+          "path": "components/openssl/include",
+          "kind": "development-content",
+          "patterns": [
+            "**/*.h",
+            "**/*.hpp",
+            "**/*.inc",
+            "**/*.c"
+          ],
+          "reason": "C development headers and applink source are not used by the packaged OpenSSL CLI.",
+          "fileCount": 147,
+          "bytes": 2218504
+        },
+        {
+          "path": "components/openssl/lib",
+          "kind": "development-content",
+          "patterns": [
+            "**/*.lib",
+            "**/*.def"
+          ],
+          "reason": "Static/import link libraries and export definitions are build-time SDK files; runtime providers and DLLs remain included.",
+          "fileCount": 49,
+          "bytes": 396406715
+        },
+        {
+          "path": "components/openssl/tests",
+          "kind": "development-content",
+          "patterns": [
+            "**/* except notices"
+          ],
+          "reason": "Publisher test executables and test vectors are not used by the OpenSSL CLI at runtime.",
+          "fileCount": 2265,
+          "bytes": 747380861
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Installed aggregate bytes include the NSIS uninstaller; portable aggregate is measured independently.",
+    "OpenSSL development/test selection and MongoDB debugger-symbol selection occur before immutable payload checksums are generated.",
+    "Memcached is absent; Redis remains available."
+  ]
+}

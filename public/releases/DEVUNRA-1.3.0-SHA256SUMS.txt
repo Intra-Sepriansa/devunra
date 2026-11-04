@@ -1,0 +1,2 @@
+183e091eb24916ebacea7fa26c6d6a9f2f42053d3c42a69e54e40effddc3b093  DEVUNRA-Setup-1.3.0.exe
+e372dfde814703d073921cc36c5eb5be63b2ddffb3ccab10d3ee10849f287a69  DEVUNRA-1.3.0-win-x64.zip
